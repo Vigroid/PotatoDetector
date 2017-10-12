@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PotatoDetector.iml" filepath="$PROJECT_DIR$/PotatoDetector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/potato-core/potato-core.iml" filepath="$PROJECT_DIR$/potato-core/potato-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/potato-impl/potato-impl.iml" filepath="$PROJECT_DIR$/potato-impl/potato-impl.iml" />
     </modules>
   </component>
 </project>
