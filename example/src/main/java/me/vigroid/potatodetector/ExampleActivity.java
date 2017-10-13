@@ -7,6 +7,7 @@ import android.os.Bundle;
 import me.vigroid.potato.core.activities.ProxyActivity;
 import me.vigroid.potato.core.app.Potato;
 import me.vigroid.potato.core.delegates.PotatoDelegate;
+import me.vigroid.potato.impl.main.PotatoBottomDelegate;
 import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity {
@@ -24,7 +25,7 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public PotatoDelegate setRootDelegate() {
-        return new ExampleDelegate();
+        return new PotatoBottomDelegate();
     }
 
 }
