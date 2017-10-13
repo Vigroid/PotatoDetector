@@ -12,6 +12,8 @@ import me.vigroid.potato.impl.R;
  */
 
 public class TeamDelegate extends BottomItemDelegate {
+
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_team;
