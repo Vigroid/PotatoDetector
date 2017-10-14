@@ -1,6 +1,7 @@
-package me.vigroid.potato.core.ui.recycler;
+package me.vigroid.potato.core.util;
 
 import com.google.auto.value.AutoValue;
+
 
 /**
  * Created by vigroid on 10/9/17.

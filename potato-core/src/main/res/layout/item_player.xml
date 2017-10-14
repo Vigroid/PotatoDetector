@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/border"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/text_ship_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rv_ship_name" />
+
+    <TextView
+        android:id="@+id/text_player_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rv_player_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/text_ship_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rv_status" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/text_win_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rv_win_rate" />
+
+            <TextView
+                android:id="@+id/text_battles_played"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rv_battle_played" />
+
+            <TextView
+                android:id="@+id/text_avg_dmg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rv_avg_dmg" />
+
+            <TextView
+                android:id="@+id/text_avg_frags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rv_avg_frags" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

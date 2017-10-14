@@ -70,6 +70,7 @@ public class Configurator {
     //Pass some Interceptor(Network)
     public final Configurator withInterceptor(Interceptor interceptor){
         INTERCEPTORS.add(interceptor);
+        POTATO_CONFIGS.put(ConfigKeys.INTERCEPTOR,INTERCEPTORS);
         return this;
     }
 

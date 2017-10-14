@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import me.vigroid.potato.core.app.Potato;
+import me.vigroid.potato.core.net.interceptors.DebugInterceptor;
 
 /**
  * Created by vigroid on 10/12/17.
@@ -19,7 +20,8 @@ public class ExampleApp extends Application {
         super.onCreate();
         Potato.init(this)
                 .withIcon(new FontAwesomeModule())
-                .withApiHost("http://127.0.0.1:8080")
+                .withApiHost("http://192.168.1.37:8080/RestServer/api/")
+                .withInterceptor(new DebugInterceptor("haha",R.raw.test))
                 .configure();
     }
 }

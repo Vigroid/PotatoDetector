@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import me.vigroid.potato.core.ui.recycler.RgbValue;
+import me.vigroid.potato.core.util.RgbValue;
 import me.vigroid.potato.impl.R;
 
 

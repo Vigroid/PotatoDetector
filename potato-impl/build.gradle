@@ -31,4 +31,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':potato-core')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.android.support:recyclerview-v7:26.+'
 }
