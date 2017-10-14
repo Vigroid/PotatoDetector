@@ -4,7 +4,7 @@
     <string name="rv_player_name">Player Name: </string>
     <string name="rv_status">Ship Status</string>
     <string name="rv_win_rate">Win Rate: </string>
-    <string name="rv_battle_played">Battles Played: </string>
+    <string name="rv_battle_played">Battles: </string>
     <string name="rv_avg_dmg">Avg Dmg: </string>
     <string name="rv_avg_frags">Avg Frags: </string>
 </resources>

@@ -36,33 +36,89 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/text_win_rate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rv_win_rate" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/text_battles_played"
+                <TextView
+                    android:id="@+id/text_win_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/rv_win_rate" />
+
+                <TextView
+                    android:id="@+id/text_win_rate_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rv_battle_played" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/text_avg_dmg"
+                <TextView
+                    android:id="@+id/text_battles_played"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_battle_played" />
+
+                <TextView
+                    android:id="@+id/text_battles_played_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rv_avg_dmg" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/text_avg_frags"
+                <TextView
+                    android:id="@+id/text_avg_dmg"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_avg_dmg" />
+
+                <TextView
+                    android:id="@+id/text_avg_dmg_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_avg_dmg" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rv_avg_frags" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_avg_frags"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_avg_frags" />
+
+                <TextView
+                    android:id="@+id/text_avg_frags_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_avg_frags" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

@@ -34,9 +34,6 @@ public class TeamDelegate extends BottomItemDelegate{
     @BindView(R2.id.rv_team)
     RecyclerView mRecyclerView = null;
 
-
-    private final String NAME = "abc";
-
     @Override
     public Object setLayout() {
         return R.layout.delegate_teammate;
@@ -46,7 +43,7 @@ public class TeamDelegate extends BottomItemDelegate{
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(
-                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),30));
     }
 
     @Override
@@ -68,7 +65,6 @@ public class TeamDelegate extends BottomItemDelegate{
                         PlayerDataConverter converter = new PlayerDataConverter();
                         converter.setJsonData(response);
                         List<PlayerBean> beans = converter.convert();
-                        int debug = beans.size();
                         mRecyclerView.setAdapter(new PlayerAdapter(beans));
                     }
                 })
