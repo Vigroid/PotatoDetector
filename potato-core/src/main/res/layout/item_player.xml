@@ -180,6 +180,7 @@
         android:layout_marginBottom="5dp">
 
         <TextView
+            android:id="@+id/text_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"

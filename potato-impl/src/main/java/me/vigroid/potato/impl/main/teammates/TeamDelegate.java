@@ -11,7 +11,8 @@ import android.view.animation.OvershootInterpolator;
 import java.util.List;
 
 import butterknife.BindView;
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.net.RestClient;
 import me.vigroid.potato.core.net.callback.ISuccess;
@@ -42,6 +43,7 @@ public class TeamDelegate extends BottomItemDelegate{
         mRecyclerView.addItemDecoration(
                 BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),15));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setHasFixedSize(true);
     }
 
     @Override
@@ -63,7 +65,20 @@ public class TeamDelegate extends BottomItemDelegate{
                         PlayerDataConverter converter = new PlayerDataConverter();
                         converter.setJsonData(response);
                         List<PlayerBean> beans = converter.convert();
-                        mRecyclerView.setAdapter(new PlayerAdapter(beans));
+                        PlayerAdapter adapter = new PlayerAdapter(beans, getContext());
+
+                        //Animation related code
+                        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(adapter);
+                        scaleAdapter.setFirstOnly(false);
+                        scaleAdapter.setDuration(500);
+                        scaleAdapter.setInterpolator(new OvershootInterpolator(.5f));
+
+                        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(scaleAdapter);
+                        alphaAdapter.setFirstOnly(false);
+                        alphaAdapter.setDuration(1000);
+                        alphaAdapter.setInterpolator(new OvershootInterpolator(.5f));
+
+                        mRecyclerView.setAdapter(alphaAdapter);
                     }
                 })
                 .build()

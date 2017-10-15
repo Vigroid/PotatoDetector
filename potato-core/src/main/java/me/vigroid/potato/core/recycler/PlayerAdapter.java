@@ -1,5 +1,8 @@
 package me.vigroid.potato.core.recycler;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +28,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         private TextView mTvBattles;
         private TextView mTvAvgDmg;
         private TextView mTvAvgFrags;
+        private TextView mTvMore;
 
         public PlayerHolder(View itemView) {
             super(itemView);
@@ -34,13 +38,16 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
             mTvBattles = itemView.findViewById(R.id.text_battles_played_content);
             mTvAvgDmg = itemView.findViewById(R.id.text_avg_dmg_content);
             mTvAvgFrags = itemView.findViewById(R.id.text_avg_frags_content);
+            mTvMore = itemView.findViewById(R.id.text_more);
         }
     }
 
     private List<PlayerBean> mBeans;
+    private Context mContext;
 
-    public PlayerAdapter(List bean) {
-        mBeans = bean;
+    public PlayerAdapter(List bean, Context context) {
+        this.mBeans = bean;
+        this.mContext = context;
     }
 
     @Override
@@ -52,20 +59,23 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
 
     @Override
     public void onBindViewHolder(PlayerHolder holder, int position) {
-        PlayerBean bean = mBeans.get(position);
-        TextView tvShipName = holder.mTvShipName;
-        TextView tvPlayerName = holder.mTvPlayerName;
-        TextView tvWinRate = holder.mTvWinRate;
-        TextView tvBattles = holder.mTvBattles;
-        TextView tvAvgDmg = holder.mTvAvgDmg;
-        TextView tvAvgFrags = holder.mTvAvgFrags;
+        final PlayerBean bean = mBeans.get(position);
 
-        tvShipName.setText(bean.shipName);
-        tvPlayerName.setText(bean.playerName);
-        tvWinRate.setText(bean.winRate);
-        tvBattles.setText(bean.battlePlayed);
-        tvAvgDmg.setText(bean.avgDmg);
-        tvAvgFrags.setText(bean.avgFrags);
+        holder.mTvShipName.setText(bean.shipName);
+        holder.mTvPlayerName.setText(bean.playerName);
+        holder.mTvWinRate.setText(bean.winRate);
+        holder.mTvBattles.setText(bean.battlePlayed);
+        holder.mTvAvgDmg.setText(bean.avgDmg);
+        holder.mTvAvgFrags.setText(bean.avgFrags);
+        holder.mTvMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String url = "http://www.google.com/search?q=" + bean.shipName;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                mContext.startActivity(i);
+            }
+        });
     }
 
     @Override
