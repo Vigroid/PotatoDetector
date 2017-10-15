@@ -16,6 +16,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import me.vigroid.potato.core.R;
+import me.vigroid.potato.core.app.ConfigKeys;
+import me.vigroid.potato.core.app.Potato;
 
 /**
  * Created by vigroid on 10/14/17.
@@ -31,10 +33,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         private TextView mTvWinRate;
         private TextView mTvBattles;
         private TextView mTvAvgDmg;
+        private TextView mTvAvgXp;
         private TextView mTvAvgFrags;
         private TextView mTvMore;
-        private View mView;
-        private View mView2;
+        private TextView mView;
 
         public PlayerHolder(View itemView) {
             super(itemView);
@@ -43,6 +45,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
             mTvWinRate = itemView.findViewById(R.id.text_win_rate_content);
             mTvBattles = itemView.findViewById(R.id.text_battles_played_content);
             mTvAvgDmg = itemView.findViewById(R.id.text_avg_dmg_content);
+            mTvAvgXp = itemView.findViewById(R.id.text_avg_xp_content);
             mTvAvgFrags = itemView.findViewById(R.id.text_avg_frags_content);
             mTvMore = itemView.findViewById(R.id.text_more);
             mView = itemView.findViewById(R.id.player_rating_tag);
@@ -74,12 +77,13 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         holder.mTvWinRate.setText(bean.winRate);
         holder.mTvBattles.setText(bean.battlePlayed);
         holder.mTvAvgDmg.setText(bean.avgDmg);
+        holder.mTvAvgXp.setText(bean.avgXp);
         holder.mTvAvgFrags.setText(bean.avgFrags);
         holder.mTvMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (bean.playerId != null && !(bean.playerId.isEmpty())) {
-                    final String url = "https://wows-numbers.com/player/" + bean.playerId + "," + bean.playerName;
+                    final String url = "https://"+ Potato.getConfiguration(ConfigKeys.PLAYER_REGION).toString() +".wows-numbers.com/player/" + bean.playerId + "," + bean.playerName;
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     mContext.startActivity(i);
@@ -94,32 +98,42 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         switch (pr){
             case BAD:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_bad));
+                holder.mView.setText(mContext.getString(R.string.rating_bad));
                 break;
             case BELOW_AVG:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_below_avg));
+                holder.mView.setText(mContext.getString(R.string.rating_below_avg));
                 break;
             case AVG:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_avg));
+                holder.mView.setText(mContext.getString(R.string.rating_avg));
                 break;
             case GOOD:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_good));
+                holder.mView.setText(mContext.getString(R.string.rating_good));
                 break;
             case VERY_GOOD:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_very_good));
+                holder.mView.setText(mContext.getString(R.string.rating_very_good));
                 break;
             case GREAT:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_great));
+                holder.mView.setText(mContext.getString(R.string.rating_great));
                 break;
             case UNICUM:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_unicum));
+                holder.mView.setText(mContext.getString(R.string.rating_unicum));
                 break;
             case SUPER_UNICUM:
                 holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_super_unicum));
+                holder.mView.setText(mContext.getString(R.string.rating_super_unicum));
                 break;
             case NO_RATING:
                 holder.mView.setBackgroundColor(Color.GRAY);
+                holder.mView.setText(mContext.getString(R.string.rating_no));
             default:
                 holder.mView.setBackgroundColor(Color.GRAY);
+                holder.mView.setText(mContext.getString(R.string.rating_no));
                 break;
 
         }

@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingTop="6dp"
-            android:text="@string/connect_title"
+            android:text="@string/connect_connect"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
@@ -36,17 +36,18 @@
                 android:id="@+id/connect_upper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@drawable/border"
+                android:orientation="vertical"
                 android:padding="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="@string/connect_connection"
                     android:textColor="@color/navy_blue"
-                    android:textSize="20sp"
-                    android:layout_marginBottom="15dp"/>
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -102,13 +103,6 @@
 
 
                     <Button
-                        android:id="@+id/button_disconnect"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/connect_disconnect" />
-
-                    <Button
                         android:id="@+id/button_QR_connect"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -122,36 +116,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/connect_upper"
-                android:orientation="vertical"
-                android:background="@drawable/border"
-                android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
                 android:padding="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:text="@string/connect_status"
+                    android:fontFamily="sans-serif-condensed"
                     android:textColor="@color/navy_blue"
-                    android:textSize="20sp"
-                    android:layout_marginBottom="15dp"/>
+                    android:textSize="20sp" />
 
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/tv_icon_status"
                     android:layout_width="wrap_content"
-                    android:text="{fa-exclamation-triangle}"
-                    android:textSize="100sp"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:text="{fa-exclamation-triangle}"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="100sp" />
 
                 <Button
                     android:id="@+id/button_test"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/connect_test"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/connect_test" />
 
             </LinearLayout>
 

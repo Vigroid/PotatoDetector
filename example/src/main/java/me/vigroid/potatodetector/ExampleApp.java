@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import me.vigroid.potato.core.app.PlayerRegion;
 import me.vigroid.potato.core.app.Potato;
 import me.vigroid.potato.core.net.interceptors.DebugInterceptor;
 
@@ -22,6 +23,7 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withApiHost("http://192.168.1.37:8080/RestServer/api/")
                 .withInterceptor(new DebugInterceptor("haha",R.raw.test))
+                .withRegion(PlayerRegion.NA)
                 .configure();
     }
 }

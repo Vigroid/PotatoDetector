@@ -2,6 +2,7 @@ package me.vigroid.potato.core.recycler;
 
 /**
  * Created by vigroid on 10/15/17.
+ * enum class for player's rating according to wows-number
  */
 
 public enum PlayerRating {

@@ -4,6 +4,7 @@
     <color name="app_background">#1111</color>
     <color name="ok_green">#00ff00</color>
     <color name="link_blue">#0645AD</color>
+    <color name="visited_purple">#800080</color>
     <color name="navy_blue_dark">#000053</color>
 
     <!-- Rating colors -->

@@ -85,6 +85,11 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withRegion(PlayerRegion  region){
+        POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region);
+        return this;
+    }
+
     public final void configure(){
         initIcons();
         //set the configure to ready state

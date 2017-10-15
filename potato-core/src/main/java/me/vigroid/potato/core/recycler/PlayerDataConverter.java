@@ -54,11 +54,14 @@ public final class PlayerDataConverter {
             final String winRate= data.getFloat("winRate").toString();
             final String battlePlayed= data.getFloat("battles").toString();
             final String avgDmg= data.getFloat("avgDamage").toString();
+            final String avgXp= data.getFloat("avgXp").toString();
             final String avgFrags= data.getFloat("avgFrags").toString();
             final boolean isPrivate = data.getBoolean("isPrivateOrHidden");
+            final boolean isTeammate = (data.getString("team").equals("friendly"));
             final PlayerRating rating = playerRating[i];
 
-            dataList.add(new PlayerBean(playerId,shipName,playerName,winRate,battlePlayed,avgDmg,avgFrags, rating, isPrivate));
+            dataList.add(new PlayerBean(playerId,shipName,playerName,winRate,
+                    battlePlayed,avgDmg,avgXp,avgFrags, rating, isPrivate,isTeammate));
         }
 
 

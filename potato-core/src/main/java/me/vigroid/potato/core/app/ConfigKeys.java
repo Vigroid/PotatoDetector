@@ -13,5 +13,6 @@ public enum ConfigKeys {
     APPLICATION_CONTEXT,
     CONFIG_READY,
     INTERCEPTOR,
-    HANDLER
+    HANDLER,
+    PLAYER_REGION
 }

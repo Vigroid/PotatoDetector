@@ -6,6 +6,16 @@
     <string name="rv_win_rate">Win Rate: </string>
     <string name="rv_battle_played">Battles: </string>
     <string name="rv_avg_dmg">Avg Dmg: </string>
+    <string name="rv_avg_xp">Avg Xp: </string>
     <string name="rv_avg_frags">Avg Frags: </string>
     <string name="rv_detail"><u>Profile in WOWS-numbers</u>></string>
+    <string name="rating_bad">Bad</string>
+    <string name="rating_below_avg">Below Average</string>
+    <string name="rating_avg">Average</string>
+    <string name="rating_good">Good</string>
+    <string name="rating_very_good">Very Good</string>
+    <string name="rating_great">Great</string>
+    <string name="rating_unicum">Unicum</string>
+    <string name="rating_super_unicum">Super Unicum</string>
+    <string name="rating_no">No Rating</string>
 </resources>

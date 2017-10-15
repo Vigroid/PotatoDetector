@@ -6,11 +6,15 @@
     android:background="@drawable/border"
     android:orientation="vertical">
 
-    <View
+    <TextView
         android:id="@+id/player_rating_tag"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:gravity="center_vertical|end"
+        android:paddingBottom="3dp"
+        android:paddingRight="5dp"
+        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/rv_player_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/navy_blue" />
@@ -31,6 +36,7 @@
             android:id="@+id/text_ship_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/rv_ship_name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black" />
@@ -55,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/rv_status"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/navy_blue" />
@@ -76,6 +83,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="right"
                     android:text="@string/rv_win_rate"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -100,6 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="right"
                     android:text="@string/rv_battle_played"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -124,6 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="right"
                     android:text="@string/rv_avg_dmg"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -145,10 +155,37 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/text_avg_xp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="right"
+                    android:text="@string/rv_avg_xp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_avg_xp_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
                     android:id="@+id/text_avg_frags"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="right"
                     android:text="@string/rv_avg_frags"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -184,6 +221,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/icon_more"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/rv_detail"
             android:textColor="@color/link_blue" />
 
