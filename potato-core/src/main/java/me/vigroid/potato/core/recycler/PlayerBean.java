@@ -6,19 +6,28 @@ package me.vigroid.potato.core.recycler;
  */
 
 public class PlayerBean {
+    String playerId;
     String shipName;
     String playerName;
     String winRate;
     String battlePlayed;
     String avgDmg;
     String avgFrags;
+    PlayerRating rating;
+    boolean isPrivate;
 
-    public PlayerBean(String shipName, String playerName, String winRate, String battlePlayed, String avgDmg, String avgFrags) {
+    public PlayerBean(String playerId, String shipName, String playerName,
+                      String winRate, String battlePlayed,
+                      String avgDmg, String avgFrags,
+                      PlayerRating rating, boolean isPrivate) {
+        this.playerId = playerId;
         this.shipName = shipName;
         this.playerName = playerName;
         this.winRate = winRate;
         this.battlePlayed = battlePlayed;
         this.avgDmg = avgDmg;
         this.avgFrags = avgFrags;
+        this.rating = rating;
+        this.isPrivate = isPrivate;
     }
 }

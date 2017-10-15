@@ -1,13 +1,17 @@
 package me.vigroid.potato.core.recycler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,6 +33,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         private TextView mTvAvgDmg;
         private TextView mTvAvgFrags;
         private TextView mTvMore;
+        private View mView;
+        private View mView2;
 
         public PlayerHolder(View itemView) {
             super(itemView);
@@ -39,6 +45,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
             mTvAvgDmg = itemView.findViewById(R.id.text_avg_dmg_content);
             mTvAvgFrags = itemView.findViewById(R.id.text_avg_frags_content);
             mTvMore = itemView.findViewById(R.id.text_more);
+            mView = itemView.findViewById(R.id.player_rating_tag);
         }
     }
 
@@ -57,6 +64,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         return holder;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(PlayerHolder holder, int position) {
         final PlayerBean bean = mBeans.get(position);
@@ -70,13 +78,53 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         holder.mTvMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String url = "http://www.google.com/search?q=" + bean.shipName;
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                mContext.startActivity(i);
+                if (bean.playerId != null && !(bean.playerId.isEmpty())) {
+                    final String url = "https://wows-numbers.com/player/" + bean.playerId + "," + bean.playerName;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    mContext.startActivity(i);
+                }else {
+                    Toast.makeText(mContext, "Can't find user with this ID!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        PlayerRating pr = bean.rating;
+
+        switch (pr){
+            case BAD:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_bad));
+                break;
+            case BELOW_AVG:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_below_avg));
+                break;
+            case AVG:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_avg));
+                break;
+            case GOOD:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_good));
+                break;
+            case VERY_GOOD:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_very_good));
+                break;
+            case GREAT:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_great));
+                break;
+            case UNICUM:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_unicum));
+                break;
+            case SUPER_UNICUM:
+                holder.mView.setBackgroundColor(mContext.getColor(R.color.rating_super_unicum));
+                break;
+            case NO_RATING:
+                holder.mView.setBackgroundColor(Color.GRAY);
+            default:
+                holder.mView.setBackgroundColor(Color.GRAY);
+                break;
+
+        }
     }
+
 
     @Override
     public int getItemCount() {

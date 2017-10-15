@@ -6,6 +6,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -31,7 +32,7 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
     private final LinkedHashMap<BottomTabBean,BottomItemDelegate> ITEMS = new LinkedHashMap<>();
-    private int mCurrentDelegate = 0;
+    protected int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
     private int mClickedColor = Color.RED;
 
@@ -54,7 +55,12 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set up index page and clicked color
-        mIndexDelegate = setIndexDelegate();
+        if (savedInstanceState!=null){
+            mIndexDelegate = savedInstanceState.getInt("current_delegate");
+            mCurrentDelegate = mIndexDelegate;
+        }else {
+            mIndexDelegate = setIndexDelegate();
+        }
         if (setClickedColor() != 0){
             mClickedColor = setClickedColor();
         }
@@ -108,6 +114,14 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("current_delegate", mCurrentDelegate);
+        Log.d("yo", Integer.toString(mCurrentDelegate));
+
+    }
+
+    @Override
     public void onClick(View view) {
         final int tag = (int) view.getTag();
         //reset all the color
@@ -121,5 +135,7 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
         //show first, hide second
         showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
+
+        Log.d("yo", Integer.toString(mCurrentDelegate));
     }
 }

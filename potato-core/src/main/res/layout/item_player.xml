@@ -38,7 +38,6 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/player_rating_tag2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray" />
@@ -169,7 +168,6 @@
 
 
     <View
-        android:id="@+id/player_rating_tag3"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray" />
