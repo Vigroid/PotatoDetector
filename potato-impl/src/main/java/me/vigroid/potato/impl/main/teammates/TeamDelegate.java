@@ -6,14 +6,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.view.animation.OvershootInterpolator;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.net.RestClient;
 import me.vigroid.potato.core.net.callback.ISuccess;
@@ -41,9 +39,9 @@ public class TeamDelegate extends BottomItemDelegate{
 
     private void initRecyclerView() {
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(
-                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),30));
+                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),15));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override

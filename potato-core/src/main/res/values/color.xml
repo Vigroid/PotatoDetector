@@ -3,4 +3,19 @@
     <color name="navy_blue">#000080</color>
     <color name="app_background">#1111</color>
     <color name="ok_green">#00ff00</color>
+    <color name="link_blue">#0645AD</color>
+    <color name="navy_blue_dark">#000053</color>
+
+    <!-- Rating colors -->
+    <color name="rating_bad">#FD1E1E</color>
+    <color name="rating_below_avg">#FD792A</color>
+    <color name="rating_avg">#FFC641</color>
+    <color name="rating_good">#49B12E</color>
+    <color name="rating_very_good">#367F21</color>
+    <color name="rating_great">#1BC7B2</color>
+    <color name="rating_unicum">#CE46ED</color>
+    <color name="rating_super_unicum">#9E1ABF</color>
+    <!-- Rating colors -->
+
+
 </resources>

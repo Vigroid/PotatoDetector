@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
+    android:background="@drawable/background_gradient">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_connect"
@@ -29,25 +29,24 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:id="@+id/connect_upper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/border"
                 android:orientation="vertical"
-                android:padding="3dp">
+                android:background="@drawable/border"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/connect_connection"
                     android:textColor="@color/navy_blue"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:layout_marginBottom="15dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="5dp">
 
 
                     <Button
@@ -123,19 +122,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/connect_upper"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/border"
                 android:orientation="vertical"
-                android:padding="3dp">
+                android:background="@drawable/border"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/connect_status"
                     android:textColor="@color/navy_blue"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:layout_marginBottom="15dp"/>
 
                 <com.joanzapata.iconify.widget.IconTextView
                     android:id="@+id/tv_icon_status"
@@ -145,7 +144,6 @@
                     android:textColor="@android:color/holo_red_dark"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"/>
 
                 <Button
