@@ -1,6 +1,7 @@
 package me.vigroid.potatodetector;
 
 import android.app.Application;
+import android.graphics.Color;
 import android.widget.Toast;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -24,6 +25,7 @@ public class ExampleApp extends Application {
                 .withApiHost("http://192.168.1.37:8080/RestServer/api/")
                 .withInterceptor(new DebugInterceptor("haha",R.raw.test))
                 .withRegion(PlayerRegion.NA)
+                .withBackGroundColor(Color.GRAY)
                 .configure();
     }
 }

@@ -11,14 +11,20 @@
         android:background="@color/navy_blue"
         android:gravity="center">
 
-        <android.support.v7.widget.AppCompatTextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/connect_connect"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:text="@string/connect_connect"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView
@@ -37,77 +43,103 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/connect_upper_tag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="@string/connect_connection"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="20sp" />
+                    android:background="@android:color/darker_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
+                    android:padding="5dp">
 
-                    <android.support.design.widget.TextInputLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp">
+                        android:layout_height="wrap_content">
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/edit_server_ip"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/connect_server"
-                            android:inputType="number" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:layout_marginBottom="15dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/connect_connection"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="20sp" />
 
-                    <android.support.design.widget.TextInputLayout
+                        <Spinner
+                            android:id="@+id/region_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true" />
+                    </RelativeLayout>
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp">
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/edit_port"
+                        <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/connect_port"
-                            android:inputType="number" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="8dp">
 
-                </LinearLayout>
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/edit_server_ip"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/connect_server"
+                                android:inputType="number" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="8dp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/edit_port"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/connect_port"
+                                android:inputType="number" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp">
-
-
-                    <Button
-                        android:id="@+id/button_connect"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/connect_connect" />
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp">
 
 
-                    <Button
-                        android:id="@+id/button_QR_connect"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/connect_QR_connect" />
+                        <Button
+                            android:id="@+id/button_connect"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/connect_connect" />
+
+
+                        <Button
+                            android:id="@+id/button_QR_connect"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/connect_QR_connect" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -119,34 +151,47 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/connect_lower_tag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="@string/connect_status"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="20sp" />
+                    android:background="@android:color/darker_gray" />
 
-                <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/tv_icon_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="{fa-exclamation-triangle}"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="100sp" />
-
-                <Button
-                    android:id="@+id/button_test"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/connect_test" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/connect_status"
+                        android:textColor="@color/navy_blue"
+                        android:textSize="20sp" />
+
+                    <com.joanzapata.iconify.widget.IconTextView
+                        android:id="@+id/tv_icon_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="{fa-exclamation-triangle}"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="100sp" />
+
+                    <Button
+                        android:id="@+id/button_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/connect_test" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

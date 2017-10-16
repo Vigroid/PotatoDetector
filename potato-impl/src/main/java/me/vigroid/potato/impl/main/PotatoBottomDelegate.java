@@ -12,7 +12,8 @@ import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.delegates.bottonTab.BottomTabBean;
 import me.vigroid.potato.core.delegates.bottonTab.ItemBuilder;
 import me.vigroid.potato.impl.main.connect.ConnectDelegate;
-import me.vigroid.potato.impl.main.teammates.TeamDelegate;
+import me.vigroid.potato.impl.main.enemy.EnemyDelegate;
+import me.vigroid.potato.impl.main.team.TeamDelegate;
 
 /**
  * Created by vigroid on 10/12/17.
@@ -26,7 +27,7 @@ public class PotatoBottomDelegate extends BaseBottomDelegate {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
         items.put(new BottomTabBean("{fa-link}", "Connect"), new ConnectDelegate());
         items.put(new BottomTabBean("{fa-users}", "Team"), new TeamDelegate());
-        items.put(new BottomTabBean("{fa-bomb}", "Enemy"), new TeamDelegate());
+        items.put(new BottomTabBean("{fa-bomb}", "Enemy"), new EnemyDelegate());
         items.put(new BottomTabBean("{fa-cogs}", "Settings"), new TeamDelegate());
         return builder.addItems(items).build();
     }

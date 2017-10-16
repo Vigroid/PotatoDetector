@@ -4,10 +4,20 @@
     <string name="connect_connection">Connection</string>
     <string name="connect_server">Server IP</string>
     <string name="connect_port">Port</string>
+    <string name="connect_region">Region</string>
     <string name="connect_connect">Connect</string>
     <string name="connect_disconnect">Disconnect</string>
     <string name="connect_QR_connect">QR</string>
     <string name="connect_status">Status</string>
     <string name="connect_test">Tap to test connection</string>
     <string name="team_title">Teammates</string>
+    <string name="enemy_title">Enemies</string>
+
+    <string-array name="region_array">
+        <item>ASIA</item>
+        <item>EU</item>
+        <item>NA</item>
+        <item>RU</item>
+    </string-array>
+
 </resources>

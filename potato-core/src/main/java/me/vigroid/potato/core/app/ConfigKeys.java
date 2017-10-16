@@ -10,6 +10,10 @@ public enum ConfigKeys {
     //domain
     ACTIVITY,
     API_HOST,
+    CONNECTED,
+    BACKGND_COLOR,
+    TEAM,
+    ENEMY,
     APPLICATION_CONTEXT,
     CONFIG_READY,
     INTERCEPTOR,

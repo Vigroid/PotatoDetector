@@ -1,4 +1,4 @@
-package me.vigroid.potato.impl.main.teammates;
+package me.vigroid.potato.impl.main.team;
 
 import android.content.Context;
 import android.graphics.Color;

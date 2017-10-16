@@ -5,16 +5,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
  * Created by vigroid on 10/10/17.
  */
 
-//TODO: change this method to thread-safe
+//TODO: change this class to thread-safe
 public final class PlayerDataConverter {
 
-    protected final ArrayList<PlayerBean> BEANS = new ArrayList<>();
     private String mJsonData = null;
 
 
@@ -30,7 +30,7 @@ public final class PlayerDataConverter {
         return mJsonData;
     }
 
-    public ArrayList<PlayerBean> convert() {
+    public HashMap<String,ArrayList<PlayerBean>> convert() {
 
         //TODO a simulated rating, will add real one when server is ready
         final PlayerRating[] playerRating = { PlayerRating.AVG,PlayerRating.BAD, PlayerRating.GREAT,
@@ -42,7 +42,9 @@ public final class PlayerDataConverter {
                 PlayerRating.GREAT,PlayerRating.GREAT,PlayerRating.AVG,
                 PlayerRating.BAD, PlayerRating.AVG,PlayerRating.VERY_GOOD};
 
-        final ArrayList<PlayerBean> dataList = new ArrayList<>();
+        final HashMap<String,ArrayList<PlayerBean>> resultMap= new HashMap<>();
+        final ArrayList<PlayerBean> teamList = new ArrayList<>();
+        final ArrayList<PlayerBean> enemyList = new ArrayList<>();
         final JSONArray dataArray = JSON.parseArray(getJsonData());
 
         final int size = dataArray.size();
@@ -60,11 +62,19 @@ public final class PlayerDataConverter {
             final boolean isTeammate = (data.getString("team").equals("friendly"));
             final PlayerRating rating = playerRating[i];
 
-            dataList.add(new PlayerBean(playerId,shipName,playerName,winRate,
-                    battlePlayed,avgDmg,avgXp,avgFrags, rating, isPrivate,isTeammate));
+            if (isTeammate) {
+                teamList.add(new PlayerBean(playerId, shipName, playerName, winRate,
+                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate, isTeammate));
+            } else {
+                enemyList.add(new PlayerBean(playerId, shipName, playerName, winRate,
+                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate, isTeammate));
+            }
         }
 
+        resultMap.put("team",teamList);
+        resultMap.put("enemy", enemyList);
 
-        return dataList;
+
+        return resultMap;
     }
 }

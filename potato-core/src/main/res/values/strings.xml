@@ -8,7 +8,7 @@
     <string name="rv_avg_dmg">Avg Dmg: </string>
     <string name="rv_avg_xp">Avg Xp: </string>
     <string name="rv_avg_frags">Avg Frags: </string>
-    <string name="rv_detail"><u>Profile in WOWS-numbers</u>></string>
+    <string name="rv_detail"><u>Profile in WOWS-numbers</u></string>
     <string name="rating_bad">Bad</string>
     <string name="rating_below_avg">Below Average</string>
     <string name="rating_avg">Average</string>

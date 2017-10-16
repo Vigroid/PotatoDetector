@@ -21,6 +21,7 @@ import me.vigroid.potato.core.app.Potato;
 
 /**
  * Created by vigroid on 10/14/17.
+ * Adapter for recyclerview, this include a VH(viewholder) where UI changes are made
  */
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHolder> {

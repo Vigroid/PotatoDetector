@@ -2,13 +2,16 @@ package me.vigroid.potato.core.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.ColorInt;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import me.vigroid.potato.core.recycler.PlayerBean;
 import okhttp3.Interceptor;
 
 /**
@@ -27,6 +30,9 @@ public class Configurator {
     private Configurator(){
         //the default setting indicate the config is not ready
         POTATO_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
+        POTATO_CONFIGS.put(ConfigKeys.CONNECTED,false);
+        POTATO_CONFIGS.put(ConfigKeys.TEAM, new ArrayList<PlayerBean>());
+        POTATO_CONFIGS.put(ConfigKeys.ENEMY, new ArrayList<PlayerBean>());
         POTATO_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
@@ -89,6 +95,24 @@ public class Configurator {
         POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region);
         return this;
     }
+
+    public final Configurator withConnectionStatus(boolean  connectionStatus){
+        POTATO_CONFIGS.put(ConfigKeys.CONNECTED, connectionStatus);
+        return this;
+    }
+    public final Configurator withBackGroundColor(@ColorInt int color){
+        POTATO_CONFIGS.put(ConfigKeys.BACKGND_COLOR, color);
+        return this;
+    }
+    public final Configurator withTeamBeans(List<PlayerBean> teamBeans){
+        POTATO_CONFIGS.put(ConfigKeys.TEAM, teamBeans);
+        return this;
+    }
+    public final Configurator withEnemyBeans(List<PlayerBean> enemyBeans){
+        POTATO_CONFIGS.put(ConfigKeys.ENEMY, enemyBeans);
+        return this;
+    }
+
 
     public final void configure(){
         initIcons();
