@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -21,7 +22,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import me.vigroid.potato.core.app.ConfigKeys;
 import me.vigroid.potato.core.app.Configurator;
+import me.vigroid.potato.core.app.PlayerRegion;
 import me.vigroid.potato.core.app.Potato;
+import me.vigroid.potato.core.app.SavedStates;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.net.RestClient;
 import me.vigroid.potato.core.net.callback.IError;
@@ -29,6 +32,8 @@ import me.vigroid.potato.core.net.callback.IFailure;
 import me.vigroid.potato.core.net.callback.ISuccess;
 import me.vigroid.potato.core.recycler.PlayerBean;
 import me.vigroid.potato.core.recycler.PlayerDataConverter;
+import me.vigroid.potato.core.recycler.PlayerRating;
+import me.vigroid.potato.core.util.preference.PotatoPreference;
 import me.vigroid.potato.impl.R;
 import me.vigroid.potato.impl.R2;
 
@@ -60,6 +65,7 @@ public class ConnectDelegate extends BottomItemDelegate {
                     public void onSuccess(String response) {
                         Configurator.getInstance().withConnectionStatus(true);
                         Configurator.getInstance().withBackGroundColor(Color.GREEN);
+                        //setPreferences(spinner.getSelectedItem().toString(),(int) spinner.getSelectedItemId());
                         setBackgroundColor(true, Color.GREEN);
                         Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
                         PlayerDataConverter converter = new PlayerDataConverter();
@@ -94,7 +100,7 @@ public class ConnectDelegate extends BottomItemDelegate {
     @OnClick(R2.id.button_test)
     void onClickTestButton() {
         RestClient.builder()
-                .url("player_infosa.php")
+                .url("player_info.php")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -135,13 +141,29 @@ public class ConnectDelegate extends BottomItemDelegate {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.region_array, R.layout.item_spinner);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setPreferences(spinner.getSelectedItem().toString(), (int) spinner.getSelectedItemId());
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                setPreferences(PlayerRegion.ASIA.name(), 0 );
+            }
+        });
+        spinner.setSelection( PotatoPreference.getCustomInt(SavedStates.PLAYER_REGION_INDEX.name()));
         setBackgroundColor((boolean)Potato.getConfiguration(ConfigKeys.CONNECTED), (int)Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
     }
 
     @Override
     public void onBindView(@Nullable Bundle saveInstanceState, View rootView) {
         init();
+    }
+
+    private void setPreferences(String region, int regionIndex){
+        PotatoPreference.addCustomString(SavedStates.PLAYER_REGION.name(), region);
+        PotatoPreference.addCustomInt(SavedStates.PLAYER_REGION_INDEX.name(), regionIndex);
     }
 
     private void setBackgroundColor(boolean isConnected, @ColorInt int color) {

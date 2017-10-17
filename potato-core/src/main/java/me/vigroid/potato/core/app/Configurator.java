@@ -92,6 +92,11 @@ public class Configurator {
     }
 
     public final Configurator withRegion(PlayerRegion  region){
+        POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region.name());
+        return this;
+    }
+
+    public final Configurator withRegion(String  region){
         POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region);
         return this;
     }

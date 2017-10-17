@@ -13,6 +13,7 @@ import me.vigroid.potato.core.delegates.bottonTab.BottomTabBean;
 import me.vigroid.potato.core.delegates.bottonTab.ItemBuilder;
 import me.vigroid.potato.impl.main.connect.ConnectDelegate;
 import me.vigroid.potato.impl.main.enemy.EnemyDelegate;
+import me.vigroid.potato.impl.main.setting.SettingDelegate;
 import me.vigroid.potato.impl.main.team.TeamDelegate;
 
 /**
@@ -28,7 +29,7 @@ public class PotatoBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-link}", "Connect"), new ConnectDelegate());
         items.put(new BottomTabBean("{fa-users}", "Team"), new TeamDelegate());
         items.put(new BottomTabBean("{fa-bomb}", "Enemy"), new EnemyDelegate());
-        items.put(new BottomTabBean("{fa-cogs}", "Settings"), new TeamDelegate());
+        items.put(new BottomTabBean("{fa-cogs}", "Settings"), new SettingDelegate());
         return builder.addItems(items).build();
     }
 

@@ -12,6 +12,7 @@
     <string name="connect_test">Tap to test connection</string>
     <string name="team_title">Teammates</string>
     <string name="enemy_title">Enemies</string>
+    <string name="setting_title">Settings</string>
 
     <string-array name="region_array">
         <item>ASIA</item>

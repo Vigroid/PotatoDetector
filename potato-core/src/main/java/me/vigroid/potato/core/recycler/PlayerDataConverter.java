@@ -64,10 +64,10 @@ public final class PlayerDataConverter {
 
             if (isTeammate) {
                 teamList.add(new PlayerBean(playerId, shipName, playerName, winRate,
-                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate, isTeammate));
+                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate));
             } else {
                 enemyList.add(new PlayerBean(playerId, shipName, playerName, winRate,
-                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate, isTeammate));
+                        battlePlayed, avgDmg, avgXp, avgFrags, rating, isPrivate));
             }
         }
 

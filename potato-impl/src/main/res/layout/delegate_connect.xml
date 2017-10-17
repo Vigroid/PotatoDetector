@@ -11,20 +11,15 @@
         android:background="@color/navy_blue"
         android:gravity="center">
 
-        <RelativeLayout
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="@string/connect_connect"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:text="@string/connect_connect"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView

@@ -18,6 +18,8 @@ import java.util.List;
 import me.vigroid.potato.core.R;
 import me.vigroid.potato.core.app.ConfigKeys;
 import me.vigroid.potato.core.app.Potato;
+import me.vigroid.potato.core.app.SavedStates;
+import me.vigroid.potato.core.util.preference.PotatoPreference;
 
 /**
  * Created by vigroid on 10/14/17.
@@ -84,7 +86,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
             @Override
             public void onClick(View view) {
                 if (bean.playerId != null && !(bean.playerId.isEmpty())) {
-                    final String url = "https://"+ Potato.getConfiguration(ConfigKeys.PLAYER_REGION).toString() +".wows-numbers.com/player/" + bean.playerId + "," + bean.playerName;
+                    final String url = "https://"+ PotatoPreference.getCustomString(SavedStates.PLAYER_REGION.name()) +".wows-numbers.com/player/" + bean.playerId + "," + bean.playerName;
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     mContext.startActivity(i);

@@ -24,7 +24,6 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withApiHost("http://192.168.1.37:8080/RestServer/api/")
                 .withInterceptor(new DebugInterceptor("haha",R.raw.test))
-                .withRegion(PlayerRegion.NA)
                 .withBackGroundColor(Color.GRAY)
                 .configure();
     }
