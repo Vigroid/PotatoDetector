@@ -154,6 +154,7 @@ public class ConnectDelegate extends BottomItemDelegate {
         });
         spinner.setSelection( PotatoPreference.getCustomInt(SavedStates.PLAYER_REGION_INDEX.name()));
         setBackgroundColor((boolean)Potato.getConfiguration(ConfigKeys.CONNECTED), (int)Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
+        //TODO: save IP and port
     }
 
     @Override

@@ -10,9 +10,24 @@
     <string name="connect_QR_connect">QR</string>
     <string name="connect_status">Status</string>
     <string name="connect_test">Tap to test connection</string>
+
     <string name="team_title">Teammates</string>
     <string name="enemy_title">Enemies</string>
+
     <string name="setting_title">Settings</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_animation">Animation</string>
+    <string name="setting_author">Author</string>
+    <string name="setting_author_detail">I am Vigroid. Looking for job now!</string>
+    <string name="setting_gitHub_page">GitHub Repo</string>
+    <string name="setting_gitHub_page_link">https://github.com/Vigroid/PotatoDetector</string>
+    <string name="setting_version">Version</string>
+    <string name="setting_version_num">1.0</string>
+
+    <string-array name="language_array">
+        <item>English</item>
+        <item>中文</item>
+    </string-array>
 
     <string-array name="region_array">
         <item>ASIA</item>

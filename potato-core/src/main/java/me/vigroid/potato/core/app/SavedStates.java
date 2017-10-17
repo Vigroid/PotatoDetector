@@ -7,6 +7,6 @@ package me.vigroid.potato.core.app;
 public enum SavedStates {
     PLAYER_REGION,
     PLAYER_REGION_INDEX,
-    ISCONNECTED,
-    TAG_COLOR
+    LANGUAGE,
+    ENABLE_ANIMATION
 }

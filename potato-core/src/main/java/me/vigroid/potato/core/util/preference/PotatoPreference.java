@@ -69,6 +69,11 @@ public class PotatoPreference {
                 .getBoolean(key, false);
     }
 
+    public static boolean getAppFlagAnimation(String key) {
+        return getAppPreference()
+                .getBoolean(key, true);
+    }
+
     public static void addCustomString(String key, String val) {
         getAppPreference()
                 .edit()

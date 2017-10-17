@@ -16,6 +16,7 @@ import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import me.vigroid.potato.core.app.ConfigKeys;
 import me.vigroid.potato.core.app.Potato;
+import me.vigroid.potato.core.app.SavedStates;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.net.RestClient;
 import me.vigroid.potato.core.net.callback.ISuccess;
@@ -23,6 +24,7 @@ import me.vigroid.potato.core.recycler.BaseDecoration;
 import me.vigroid.potato.core.recycler.PlayerAdapter;
 import me.vigroid.potato.core.recycler.PlayerBean;
 import me.vigroid.potato.core.recycler.PlayerDataConverter;
+import me.vigroid.potato.core.util.preference.PotatoPreference;
 import me.vigroid.potato.impl.R;
 import me.vigroid.potato.impl.R2;
 
@@ -64,18 +66,24 @@ public class TeamDelegate extends BottomItemDelegate {
 
             PlayerAdapter adapter = new PlayerAdapter(beans, getContext());
 
-            //Animation related code
-            ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(adapter);
-            scaleAdapter.setFirstOnly(false);
-            scaleAdapter.setDuration(800);
-            scaleAdapter.setInterpolator(new OvershootInterpolator(.5f));
+            //Log.i("yoo",Boolean.toString(PotatoPreference.getAppFlagAnimation(SavedStates.ENABLE_ANIMATION.name())));
 
-            AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(scaleAdapter);
-            alphaAdapter.setFirstOnly(false);
-            alphaAdapter.setDuration(800);
-            alphaAdapter.setInterpolator(new OvershootInterpolator(.5f));
+            if (PotatoPreference.getAppFlagAnimation(SavedStates.ENABLE_ANIMATION.name())) {
 
-            mRecyclerView.setAdapter(alphaAdapter);
+                //Animation related code
+                ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(adapter);
+                scaleAdapter.setFirstOnly(false);
+                scaleAdapter.setDuration(800);
+                scaleAdapter.setInterpolator(new OvershootInterpolator(.5f));
+
+                AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(scaleAdapter);
+                alphaAdapter.setFirstOnly(false);
+                alphaAdapter.setDuration(800);
+                alphaAdapter.setInterpolator(new OvershootInterpolator(.5f));
+                mRecyclerView.setAdapter(alphaAdapter);
+            } else {
+                mRecyclerView.setAdapter(adapter);
+            }
         } else {
             Toast.makeText(_mActivity, "No contents!", Toast.LENGTH_SHORT).show();
         }
