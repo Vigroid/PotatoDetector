@@ -1,13 +1,15 @@
 package me.vigroid.potato.impl.main.connect;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +18,6 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,7 +33,7 @@ import me.vigroid.potato.core.net.callback.IFailure;
 import me.vigroid.potato.core.net.callback.ISuccess;
 import me.vigroid.potato.core.recycler.PlayerBean;
 import me.vigroid.potato.core.recycler.PlayerDataConverter;
-import me.vigroid.potato.core.recycler.PlayerRating;
+import me.vigroid.potato.core.util.IpAddressChecker;
 import me.vigroid.potato.core.util.callback.CallbackManager;
 import me.vigroid.potato.core.util.callback.CallbackType;
 import me.vigroid.potato.core.util.callback.IGlobalCallback;
@@ -59,84 +60,122 @@ public class ConnectDelegate extends BottomItemDelegate {
     @BindView(R2.id.connect_lower_tag)
     TextView tvLower = null;
 
+    @BindView(R2.id.edit_server_ip)
+    TextInputEditText etIp = null;
+
+    @BindView(R2.id.edit_port)
+    TextInputEditText etPort = null;
+
     @OnClick(R2.id.button_connect)
     void onClickConnectButton() {
-        RestClient.builder()
-                .url("player_info.php")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Configurator.getInstance().withConnectionStatus(true);
-                        Configurator.getInstance().withBackGroundColor(Color.GREEN);
-                        //setPreferences(spinner.getSelectedItem().toString(),(int) spinner.getSelectedItemId());
-                        setBackgroundColor(true, Color.GREEN);
-                        Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
-                        PlayerDataConverter converter = new PlayerDataConverter();
-                        converter.setJsonData(response);
-                        HashMap<String,ArrayList<PlayerBean>> resultMap = converter.convert();
-                        Configurator.getInstance().withTeamBeans(resultMap.get("team"));
-                        Configurator.getInstance().withEnemyBeans(resultMap.get("enemy"));
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Configurator.getInstance().withConnectionStatus(false);
-                        Configurator.getInstance().withBackGroundColor(Color.RED);
-                        setBackgroundColor(false, Color.RED);
-                        Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Configurator.getInstance().withConnectionStatus(false);
-                        Configurator.getInstance().withBackGroundColor(Color.YELLOW);
-                        setBackgroundColor(false, Color.YELLOW);
-                        Toast.makeText(_mActivity, "Connection Error!\n"+ code + msg, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
+        final int max_host_string_size = 50;
+
+        boolean isInputLegal;
+        String ip = etIp.getText().toString();
+        String port = etPort.getText().toString();
+
+        StringBuilder sb = new StringBuilder(max_host_string_size);
+
+        isInputLegal = checkInput(ip, port);
+
+        if (isInputLegal) {
+            sb.append("http://");
+            sb.append(ip);
+            sb.append(":");
+            sb.append(port);
+            sb.append("/RestServer/api/");
+
+            Log.i("yo", sb.toString());
+
+            Configurator.getInstance().withApiHost(sb.toString());
+            Configurator.getInstance().withIP(ip);
+            Configurator.getInstance().withPort(port);
+
+            RestClient.builder()
+                    //TODO add not hard coded url
+                    .url("player_info.php")
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Configurator.getInstance().withConnectionStatus(true);
+                            Configurator.getInstance().withBackGroundColor(Color.GREEN);
+                            setBackgroundColor(true, Color.GREEN);
+                            Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
+                            PlayerDataConverter converter = new PlayerDataConverter();
+                            converter.setJsonData(response);
+                            HashMap<String, ArrayList<PlayerBean>> resultMap = converter.convert();
+                            Configurator.getInstance().withTeamBeans(resultMap.get("team"));
+                            Configurator.getInstance().withEnemyBeans(resultMap.get("enemy"));
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            Configurator.getInstance().withConnectionStatus(false);
+                            Configurator.getInstance().withBackGroundColor(Color.RED);
+                            setBackgroundColor(false, Color.RED);
+                            Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            Configurator.getInstance().withConnectionStatus(false);
+                            Configurator.getInstance().withBackGroundColor(Color.YELLOW);
+                            setBackgroundColor(false, Color.YELLOW);
+                            Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
+                    .get();
+        } else {
+            Toast.makeText(_mActivity, "Sorry! Invalid input", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R2.id.button_test)
     void onClickTestButton() {
-        RestClient.builder()
-                .url("player_info.php")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Configurator.getInstance().withConnectionStatus(true);
-                        Configurator.getInstance().withBackGroundColor(Color.GREEN);
-                        setBackgroundColor(true, Color.GREEN);
-                        Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Configurator.getInstance().withConnectionStatus(false);
-                        Configurator.getInstance().withBackGroundColor(Color.RED);
-                        setBackgroundColor(false, Color.RED);
-                        Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Configurator.getInstance().withConnectionStatus(false);
-                        Configurator.getInstance().withBackGroundColor(Color.YELLOW);
-                        setBackgroundColor(false, Color.YELLOW);
-                        Toast.makeText(_mActivity, "Connection Error!\n"+ code + msg, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
+        String apiHost = Potato.getConfiguration(ConfigKeys.API_HOST);
+        Log.i("yo", apiHost);
+        if (apiHost != null && !apiHost.isEmpty()) {
+            RestClient.builder()
+                    .url("player_info.php")
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Configurator.getInstance().withConnectionStatus(true);
+                            Configurator.getInstance().withBackGroundColor(Color.GREEN);
+                            setBackgroundColor(true, Color.GREEN);
+                            Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            Configurator.getInstance().withConnectionStatus(false);
+                            Configurator.getInstance().withBackGroundColor(Color.RED);
+                            setBackgroundColor(false, Color.RED);
+                            Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            Configurator.getInstance().withConnectionStatus(false);
+                            Configurator.getInstance().withBackGroundColor(Color.YELLOW);
+                            setBackgroundColor(false, Color.YELLOW);
+                            Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
+                    .get();
+        } else {
+            Toast.makeText(_mActivity, "Please input valid IP and port first.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R2.id.button_QR_connect)
-    void onClickScanQr(){
+    void onClickScanQr() {
         startScanWithCheck(this.getParentDelegate());
     }
 
@@ -157,12 +196,14 @@ public class ConnectDelegate extends BottomItemDelegate {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                setPreferences(PlayerRegion.ASIA.name(), 0 );
+                setPreferences(PlayerRegion.ASIA.name(), 0);
             }
         });
-        spinner.setSelection( PotatoPreference.getCustomInt(SavedStates.PLAYER_REGION_INDEX.name()));
-        setBackgroundColor((boolean)Potato.getConfiguration(ConfigKeys.CONNECTED), (int)Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
-        //TODO: save IP and port
+        spinner.setSelection(PotatoPreference.getCustomInt(SavedStates.PLAYER_REGION_INDEX.name()));
+        setBackgroundColor((boolean) Potato.getConfiguration(ConfigKeys.CONNECTED), (int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
+
+        etIp.setText((String) Potato.getConfiguration(ConfigKeys.IP));
+        etPort.setText((String) Potato.getConfiguration(ConfigKeys.PORT));
     }
 
     @Override
@@ -177,7 +218,7 @@ public class ConnectDelegate extends BottomItemDelegate {
                 });
     }
 
-    private void setPreferences(String region, int regionIndex){
+    private void setPreferences(String region, int regionIndex) {
         PotatoPreference.addCustomString(SavedStates.PLAYER_REGION.name(), region);
         PotatoPreference.addCustomInt(SavedStates.PLAYER_REGION_INDEX.name(), regionIndex);
     }
@@ -191,6 +232,33 @@ public class ConnectDelegate extends BottomItemDelegate {
         } else {
             tvStatus.setText("{fa-exclamation-triangle}");
             tvStatus.setTextColor(Color.RED);
+        }
+    }
+
+    private boolean checkInput(String ip, String port) {
+
+        if (ip.isEmpty()) {
+            etIp.setError("Empty IP address");
+            return false;
+        }
+        if (port.isEmpty()) {
+            etPort.setError("Empty port number");
+            return false;
+        }
+
+        if (!IpAddressChecker.isLegalIp(ip)) {
+            etIp.setError("Illegal IP address");
+            return false;
+        }
+
+        int portNum = Integer.parseInt(port);
+
+        //My rest server will allocate a random port number between 8000 and 10000 each time
+        if (portNum > 10000 || portNum < 8000) {
+            etPort.setError("Port number should between 8000 and 10000");
+            return false;
+        } else {
+            return true;
         }
     }
 }

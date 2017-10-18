@@ -30,6 +30,9 @@ public class Configurator {
     private Configurator(){
         //the default setting indicate the config is not ready
         POTATO_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
+        POTATO_CONFIGS.put(ConfigKeys.API_HOST, "");
+        POTATO_CONFIGS.put(ConfigKeys.IP, "");
+        POTATO_CONFIGS.put(ConfigKeys.PORT, "");
         POTATO_CONFIGS.put(ConfigKeys.CONNECTED,false);
         POTATO_CONFIGS.put(ConfigKeys.TEAM, new ArrayList<PlayerBean>());
         POTATO_CONFIGS.put(ConfigKeys.ENEMY, new ArrayList<PlayerBean>());
@@ -47,7 +50,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    //Get the configuration hashmap
+    //Get the configuration Hashmap
     final HashMap<Object,Object> getPotatoConfigs(){
         return POTATO_CONFIGS;
     }
@@ -64,6 +67,16 @@ public class Configurator {
     //set host IP
     public final Configurator withApiHost(String host){
         POTATO_CONFIGS.put(ConfigKeys.API_HOST, host);
+        return this;
+    }
+
+    public final Configurator withIP(String ip){
+        POTATO_CONFIGS.put(ConfigKeys.IP, ip);
+        return this;
+    }
+
+    public final Configurator withPort(String port){
+        POTATO_CONFIGS.put(ConfigKeys.PORT, port);
         return this;
     }
 
@@ -88,16 +101,6 @@ public class Configurator {
 
     public final Configurator withActivity(Activity activity){
         POTATO_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
-        return this;
-    }
-
-    public final Configurator withRegion(PlayerRegion  region){
-        POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region.name());
-        return this;
-    }
-
-    public final Configurator withRegion(String  region){
-        POTATO_CONFIGS.put(ConfigKeys.PLAYER_REGION, region);
         return this;
     }
 
@@ -133,6 +136,7 @@ public class Configurator {
     }
 
     //get each configuration detail
+    @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key){
         checkConfiguration();
         //get the configuration value by key

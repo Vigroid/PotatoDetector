@@ -10,6 +10,8 @@ public enum ConfigKeys {
     //domain
     ACTIVITY,
     API_HOST,
+    IP,
+    PORT,
     CONNECTED,
     BACKGND_COLOR,
     TEAM,
@@ -18,5 +20,4 @@ public enum ConfigKeys {
     CONFIG_READY,
     INTERCEPTOR,
     HANDLER,
-    PLAYER_REGION
 }

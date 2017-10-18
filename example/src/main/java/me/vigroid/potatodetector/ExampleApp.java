@@ -22,8 +22,7 @@ public class ExampleApp extends Application {
         super.onCreate();
         Potato.init(this)
                 .withIcon(new FontAwesomeModule())
-                .withApiHost("http://192.168.1.37:8080/RestServer/api/")
-                .withInterceptor(new DebugInterceptor("haha",R.raw.test))
+                .withInterceptor(new DebugInterceptor("debug",R.raw.test))
                 .withBackGroundColor(Color.GRAY)
                 .configure();
     }
