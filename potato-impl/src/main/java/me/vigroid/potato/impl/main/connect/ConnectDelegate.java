@@ -68,28 +68,10 @@ public class ConnectDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.button_connect)
     void onClickConnectButton() {
-        final int max_host_string_size = 50;
-
-        boolean isInputLegal;
         String ip = etIp.getText().toString();
         String port = etPort.getText().toString();
 
-        StringBuilder sb = new StringBuilder(max_host_string_size);
-
-        isInputLegal = checkInput(ip, port);
-
-        if (isInputLegal) {
-            sb.append("http://");
-            sb.append(ip);
-            sb.append(":");
-            sb.append(port);
-            sb.append("/RestServer/api/");
-
-            Log.i("yo", sb.toString());
-
-            Configurator.getInstance().withApiHost(sb.toString());
-            Configurator.getInstance().withIP(ip);
-            Configurator.getInstance().withPort(port);
+        if (checkAndSetInput(ip, port)) {
 
             RestClient.builder()
                     //TODO add not hard coded url
@@ -208,14 +190,21 @@ public class ConnectDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle saveInstanceState, View rootView) {
-        init();
         CallbackManager.getInstance()
                 .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
                     @Override
                     public void executeCallback(@Nullable String args) {
                         Toast.makeText(_mActivity, args, Toast.LENGTH_LONG).show();
+                        String[] address = args.split(":");
+                        if (checkAndSetInput(address[0], address[1])) {
+                            etIp.setText((String) Potato.getConfiguration(ConfigKeys.IP));
+                            etPort.setText((String) Potato.getConfiguration(ConfigKeys.PORT));
+                        } else {
+                            Toast.makeText(_mActivity, "Invalid QR code", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+        init();
     }
 
     private void setPreferences(String region, int regionIndex) {
@@ -235,7 +224,7 @@ public class ConnectDelegate extends BottomItemDelegate {
         }
     }
 
-    private boolean checkInput(String ip, String port) {
+    private boolean checkAndSetInput(String ip, String port) {
 
         if (ip.isEmpty()) {
             etIp.setError("Empty IP address");
@@ -257,8 +246,24 @@ public class ConnectDelegate extends BottomItemDelegate {
         if (portNum > 10000 || portNum < 8000) {
             etPort.setError("Port number should between 8000 and 10000");
             return false;
-        } else {
-            return true;
         }
+
+        final int max_host_string_size = 50;
+
+        StringBuilder sb = new StringBuilder(max_host_string_size);
+
+        sb.append("http://");
+        sb.append(ip);
+        sb.append(":");
+        sb.append(port);
+        sb.append("/RestServer/api/");
+
+        Log.i("yo", sb.toString());
+
+        Configurator.getInstance().withApiHost(sb.toString());
+        Configurator.getInstance().withIP(ip);
+        Configurator.getInstance().withPort(port);
+
+        return true;
     }
 }

@@ -12,7 +12,6 @@ import java.util.HashMap;
  * Created by vigroid on 10/10/17.
  */
 
-//TODO: change this class to thread-safe
 public final class PlayerDataConverter {
 
     private String mJsonData = null;
