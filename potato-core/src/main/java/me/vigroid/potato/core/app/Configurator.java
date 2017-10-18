@@ -37,6 +37,9 @@ public class Configurator {
         POTATO_CONFIGS.put(ConfigKeys.TEAM, new ArrayList<PlayerBean>());
         POTATO_CONFIGS.put(ConfigKeys.ENEMY, new ArrayList<PlayerBean>());
         POTATO_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        POTATO_CONFIGS.put(ConfigKeys.CONNECT_UI_UPDATED, false);
+        POTATO_CONFIGS.put(ConfigKeys.TEAM_UI_UPDATED, false);
+        POTATO_CONFIGS.put(ConfigKeys.ENEMY_UI_UPDATED, false);
     }
 
     //Holder inner class
@@ -121,6 +124,20 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withConUiUpdate(boolean isUpdated){
+        POTATO_CONFIGS.put(ConfigKeys.CONNECT_UI_UPDATED, isUpdated);
+        return this;
+    }
+
+    public final Configurator withTeamUiUpdate(boolean isUpdated){
+        POTATO_CONFIGS.put(ConfigKeys.TEAM_UI_UPDATED, isUpdated);
+        return this;
+    }
+
+    public final Configurator withEnemyUiUpdate(boolean isUpdated){
+        POTATO_CONFIGS.put(ConfigKeys.ENEMY_UI_UPDATED, isUpdated);
+        return this;
+    }
 
     public final void configure(){
         initIcons();

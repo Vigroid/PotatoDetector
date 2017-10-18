@@ -20,4 +20,7 @@ public enum ConfigKeys {
     CONFIG_READY,
     INTERCEPTOR,
     HANDLER,
+    CONNECT_UI_UPDATED,
+    TEAM_UI_UPDATED,
+    ENEMY_UI_UPDATED
 }

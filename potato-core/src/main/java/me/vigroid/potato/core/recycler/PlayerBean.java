@@ -32,4 +32,8 @@ public class PlayerBean {
         this.rating = rating;
         this.isPrivate = isPrivate;
     }
+
+    public String getPlayerName(){
+        return playerName;
+    }
 }

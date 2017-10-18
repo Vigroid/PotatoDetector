@@ -142,9 +142,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         }
     }
 
-
     @Override
     public int getItemCount() {
         return mBeans.size();
+    }
+
+    public void refresh(List<PlayerBean> beans){
+        mBeans.clear();
+        mBeans.addAll(beans);
+        notifyDataSetChanged();
     }
 }

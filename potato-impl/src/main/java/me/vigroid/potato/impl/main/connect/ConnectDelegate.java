@@ -1,13 +1,13 @@
 package me.vigroid.potato.impl.main.connect;
 
+import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -28,6 +28,7 @@ import me.vigroid.potato.core.app.Potato;
 import me.vigroid.potato.core.app.SavedStates;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.net.RestClient;
+import me.vigroid.potato.core.net.RestUrl;
 import me.vigroid.potato.core.net.callback.IError;
 import me.vigroid.potato.core.net.callback.IFailure;
 import me.vigroid.potato.core.net.callback.ISuccess;
@@ -75,37 +76,37 @@ public class ConnectDelegate extends BottomItemDelegate {
 
             RestClient.builder()
                     //TODO add not hard coded url
-                    .url("player_info.php")
+                    .url(RestUrl.REST_URL)
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Configurator.getInstance().withConnectionStatus(true);
-                            Configurator.getInstance().withBackGroundColor(Color.GREEN);
-                            setBackgroundColor(true, Color.GREEN);
                             Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
-                            PlayerDataConverter converter = new PlayerDataConverter();
-                            converter.setJsonData(response);
-                            HashMap<String, ArrayList<PlayerBean>> resultMap = converter.convert();
-                            Configurator.getInstance().withTeamBeans(resultMap.get("team"));
-                            Configurator.getInstance().withEnemyBeans(resultMap.get("enemy"));
+                            HashMap<String, ArrayList<PlayerBean>> resultMap = new PlayerDataConverter().setJsonData(response).convert();
+                            Configurator.getInstance().withTeamBeans(resultMap.get("team"))
+                                    .withEnemyBeans(resultMap.get("enemy"))
+                                    .withConnectionStatus(true)
+                                    .withBackGroundColor(Color.GREEN)
+                                    .withTeamUiUpdate(true)
+                                    .withEnemyUiUpdate(true);
+                            setBackgroundColor();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            Configurator.getInstance().withConnectionStatus(false);
-                            Configurator.getInstance().withBackGroundColor(Color.RED);
-                            setBackgroundColor(false, Color.RED);
                             Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.RED);
+                            setBackgroundColor();
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            Configurator.getInstance().withConnectionStatus(false);
-                            Configurator.getInstance().withBackGroundColor(Color.YELLOW);
-                            setBackgroundColor(false, Color.YELLOW);
                             Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.YELLOW);
+                            setBackgroundColor();
                         }
                     })
                     .build()
@@ -121,32 +122,33 @@ public class ConnectDelegate extends BottomItemDelegate {
         Log.i("yo", apiHost);
         if (apiHost != null && !apiHost.isEmpty()) {
             RestClient.builder()
-                    .url("player_info.php")
+                    //TODO add not hard coded url
+                    .url(RestUrl.REST_URL)
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Configurator.getInstance().withConnectionStatus(true);
-                            Configurator.getInstance().withBackGroundColor(Color.GREEN);
-                            setBackgroundColor(true, Color.GREEN);
                             Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(true)
+                                    .withBackGroundColor(Color.GREEN);
+                            setBackgroundColor();
                         }
                     })
                     .failure(new IFailure() {
                         @Override
                         public void onFailure() {
-                            Configurator.getInstance().withConnectionStatus(false);
-                            Configurator.getInstance().withBackGroundColor(Color.RED);
-                            setBackgroundColor(false, Color.RED);
                             Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.RED);
+                            setBackgroundColor();
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
-                            Configurator.getInstance().withConnectionStatus(false);
-                            Configurator.getInstance().withBackGroundColor(Color.YELLOW);
-                            setBackgroundColor(false, Color.YELLOW);
                             Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.YELLOW);
+                            setBackgroundColor();
                         }
                     })
                     .build()
@@ -158,7 +160,20 @@ public class ConnectDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.button_QR_connect)
     void onClickScanQr() {
+        if (_mActivity.getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) _mActivity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(_mActivity.getCurrentFocus().getWindowToken(), 0);
+        }
         startScanWithCheck(this.getParentDelegate());
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        if (Potato.getConfiguration(ConfigKeys.CONNECT_UI_UPDATED)){
+            setBackgroundColor();
+            Configurator.getInstance().withConUiUpdate(false);
+        }
     }
 
     @Override
@@ -182,7 +197,7 @@ public class ConnectDelegate extends BottomItemDelegate {
             }
         });
         spinner.setSelection(PotatoPreference.getCustomInt(SavedStates.PLAYER_REGION_INDEX.name()));
-        setBackgroundColor((boolean) Potato.getConfiguration(ConfigKeys.CONNECTED), (int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
+        setBackgroundColor();
 
         etIp.setText((String) Potato.getConfiguration(ConfigKeys.IP));
         etPort.setText((String) Potato.getConfiguration(ConfigKeys.PORT));
@@ -194,13 +209,22 @@ public class ConnectDelegate extends BottomItemDelegate {
                 .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
                     @Override
                     public void executeCallback(@Nullable String args) {
-                        Toast.makeText(_mActivity, args, Toast.LENGTH_LONG).show();
-                        String[] address = args.split(":");
-                        if (checkAndSetInput(address[0], address[1])) {
-                            etIp.setText((String) Potato.getConfiguration(ConfigKeys.IP));
-                            etPort.setText((String) Potato.getConfiguration(ConfigKeys.PORT));
+                        if (args == null && args.isEmpty() && !args.contains(":")) {
+                            Toast.makeText(_mActivity, "No QR code readed!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(_mActivity, "Invalid QR code", Toast.LENGTH_SHORT).show();
+                            String[] address = args.split(":");
+                            if (address.length == 2) {
+                                if (checkAndSetInput(address[0], address[1])) {
+                                    Toast.makeText(_mActivity, args, Toast.LENGTH_LONG).show();
+                                    etIp.setText((String) Potato.getConfiguration(ConfigKeys.IP));
+                                    etPort.setText((String) Potato.getConfiguration(ConfigKeys.PORT));
+                                    onClickConnectButton();
+                                } else {
+                                    Toast.makeText(_mActivity, "Invalid QR code", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(_mActivity, "Invalid QR code", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -212,10 +236,10 @@ public class ConnectDelegate extends BottomItemDelegate {
         PotatoPreference.addCustomInt(SavedStates.PLAYER_REGION_INDEX.name(), regionIndex);
     }
 
-    private void setBackgroundColor(boolean isConnected, @ColorInt int color) {
-        tvUpper.setBackgroundColor(color);
-        tvLower.setBackgroundColor(color);
-        if (isConnected) {
+    private void setBackgroundColor() {
+        tvUpper.setBackgroundColor((int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
+        tvLower.setBackgroundColor((int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
+        if (Potato.getConfiguration(ConfigKeys.CONNECTED)) {
             tvStatus.setText("{fa-check-circle}");
             tvStatus.setTextColor(Color.GREEN);
         } else {
@@ -240,11 +264,16 @@ public class ConnectDelegate extends BottomItemDelegate {
             return false;
         }
 
-        int portNum = Integer.parseInt(port);
+        int portNum = 0;
+        try {
+            portNum = Integer.parseInt(port);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //My rest server will allocate a random port number between 8000 and 10000 each time
         if (portNum > 10000 || portNum < 8000) {
-            etPort.setError("Port number should between 8000 and 10000");
+            etPort.setError("Illegal port number");
             return false;
         }
 
@@ -263,6 +292,9 @@ public class ConnectDelegate extends BottomItemDelegate {
         Configurator.getInstance().withApiHost(sb.toString());
         Configurator.getInstance().withIP(ip);
         Configurator.getInstance().withPort(port);
+
+        etIp.setError(null);
+        etPort.setError(null);
 
         return true;
     }

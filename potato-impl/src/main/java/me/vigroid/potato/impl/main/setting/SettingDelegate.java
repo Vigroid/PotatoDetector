@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
+import me.vigroid.potato.core.app.Configurator;
 import me.vigroid.potato.core.app.SavedStates;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
 import me.vigroid.potato.core.util.preference.PotatoPreference;
@@ -58,13 +59,15 @@ public class SettingDelegate extends BottomItemDelegate {
     @OnCheckedChanged(R2.id.toggle_animation)
     void onToggleAnimation(boolean isChecked){
         PotatoPreference.setAppFlag(SavedStates.ENABLE_ANIMATION.name(),isChecked);
-        //Log.i("yoo",Boolean.toString(PotatoPreference.getAppFlagAnimation(SavedStates.ENABLE_ANIMATION.name())));
+        Configurator.getInstance()
+                .withEnemyUiUpdate(true)
+                .withTeamUiUpdate(true);
     }
 
     //TODO easter egg
     @OnClick(R2.id.easter_egg)
     void onEasterEgg(){
-        Toast.makeText(_mActivity, "nanodesu~", Toast.LENGTH_SHORT).show();
+        Toast.makeText(_mActivity, "Poi~", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -83,6 +86,7 @@ public class SettingDelegate extends BottomItemDelegate {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 PotatoPreference.addCustomInt(SavedStates.LANGUAGE.name(), (int)l);
+                Toast.makeText(_mActivity, "Sorry...Under development!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
