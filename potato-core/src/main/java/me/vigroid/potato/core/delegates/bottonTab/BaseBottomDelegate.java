@@ -21,6 +21,7 @@ import butterknife.BindView;
 import me.vigroid.potato.core.R;
 import me.vigroid.potato.core.R2;
 import me.vigroid.potato.core.delegates.PotatoDelegate;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -97,8 +98,8 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
             }
         }
         //convert delegate arraylist to array for use of fragmentation
-        final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
+        final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
     //reset all bar item to gray
@@ -133,9 +134,9 @@ public abstract class BaseBottomDelegate extends PotatoDelegate implements View.
         final AppCompatTextView itemTitle = (AppCompatTextView)item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
         //show first, hide second
-        showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
 
-        Log.d("yo", Integer.toString(mCurrentDelegate));
+        //Log.d("yo", Integer.toString(mCurrentDelegate));
     }
 }

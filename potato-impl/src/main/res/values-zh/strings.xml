@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">WOWS知己知彼</string>
+    <string name="connect_connection">连接</string>
+    <string name="connect_server">服务器IP</string>
+    <string name="connect_port">端口</string>
+    <string name="connect_connect">连接</string>
+    <string name="connect_QR_connect">二维码</string>
+    <string name="connect_status">连接状态</string>
+    <string name="connect_test">按此键测试连接</string>
+
+    <string name="team_title">队友</string>
+    <string name="enemy_title">敌方</string>
+
+    <string name="setting_title">设置</string>
+    <string name="setting_language">语言</string>
+    <string name="setting_animation">动画效果</string>
+    <string name="setting_author">作者</string>
+    <string name="setting_author_detail">我是vigroid，找工作中TAT</string>
+    <string name="setting_gitHub_page">GitHub Repo</string>
+    <string name="setting_gitHub_page_link">https://github.com/Vigroid/PotatoDetector</string>
+    <string name="setting_version">版本号</string>
+    <string name="setting_version_num">1.0</string>
+
+    <string-array name="language_array">
+        <item>系统自动</item>
+        <item>English</item>
+        <item>简体中文</item>
+    </string-array>
+
+    <string-array name="region_array">
+        <item>亚服</item>
+        <item>欧服</item>
+        <item>美服</item>
+        <item>俄服</item>
+    </string-array>
+
+</resources>

@@ -33,6 +33,9 @@ import me.vigroid.potato.core.net.callback.ISuccess;
 import me.vigroid.potato.core.recycler.PlayerBean;
 import me.vigroid.potato.core.recycler.PlayerDataConverter;
 import me.vigroid.potato.core.recycler.PlayerRating;
+import me.vigroid.potato.core.util.callback.CallbackManager;
+import me.vigroid.potato.core.util.callback.CallbackType;
+import me.vigroid.potato.core.util.callback.IGlobalCallback;
 import me.vigroid.potato.core.util.preference.PotatoPreference;
 import me.vigroid.potato.impl.R;
 import me.vigroid.potato.impl.R2;
@@ -132,6 +135,11 @@ public class ConnectDelegate extends BottomItemDelegate {
                 .get();
     }
 
+    @OnClick(R2.id.button_QR_connect)
+    void onClickScanQr(){
+        startScanWithCheck(this.getParentDelegate());
+    }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_connect;
@@ -160,6 +168,13 @@ public class ConnectDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle saveInstanceState, View rootView) {
         init();
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        Toast.makeText(_mActivity, args, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void setPreferences(String region, int regionIndex){

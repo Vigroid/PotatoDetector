@@ -1,12 +1,9 @@
 <resources>
     <string name="app_name">potato-impl</string>
-    <string name="connect_title">MM Monitor</string>
     <string name="connect_connection">Connection</string>
     <string name="connect_server">Server IP</string>
     <string name="connect_port">Port</string>
-    <string name="connect_region">Region</string>
     <string name="connect_connect">Connect</string>
-    <string name="connect_disconnect">Disconnect</string>
     <string name="connect_QR_connect">QR</string>
     <string name="connect_status">Status</string>
     <string name="connect_test">Tap to test connection</string>
@@ -25,8 +22,9 @@
     <string name="setting_version_num">1.0</string>
 
     <string-array name="language_array">
+        <item>Auto</item>
         <item>English</item>
-        <item>中文</item>
+        <item>简体中文</item>
     </string-array>
 
     <string-array name="region_array">

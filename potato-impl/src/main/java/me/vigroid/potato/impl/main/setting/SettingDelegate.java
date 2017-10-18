@@ -1,9 +1,15 @@
 package me.vigroid.potato.impl.main.setting;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
@@ -57,6 +65,7 @@ public class SettingDelegate extends BottomItemDelegate {
     @OnClick(R2.id.easter_egg)
     void onEasterEgg(){
         Toast.makeText(_mActivity, "nanodesu~", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -70,6 +79,7 @@ public class SettingDelegate extends BottomItemDelegate {
                 R.array.language_array, R.layout.item_spinner);
         langSpinner.setAdapter(adapter);
         langSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 PotatoPreference.addCustomInt(SavedStates.LANGUAGE.name(), (int)l);

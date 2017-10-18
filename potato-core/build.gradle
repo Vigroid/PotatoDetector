@@ -41,8 +41,8 @@ dependencies {
     compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
 
     //Fragmentation dependency
-    compile 'me.yokeyword:fragmentation:0.10.1'
-    compile 'me.yokeyword:fragmentation-swipeback:0.7.9'
+    compile 'me.yokeyword:fragmentation:1.0.3'
+    compile 'me.yokeyword:fragmentation-swipeback:1.0.3'
     //ButterKnife dependency
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
@@ -70,7 +70,15 @@ dependencies {
 
     //JSON from ali
     compile 'com.alibaba:fastjson:1.1.57.android'
+
+    //animation for recyclerview
     compile 'jp.wasabeef:recyclerview-animators:2.2.3'
 
+    //qr scanner
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
+
+    //dynamic permission granting
+    compile 'com.github.hotchemi:permissionsdispatcher:3.0.1'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
 
 }
