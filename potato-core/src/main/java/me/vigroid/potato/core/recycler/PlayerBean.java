@@ -15,12 +15,13 @@ public class PlayerBean {
     String avgXp;
     String avgFrags;
     PlayerRating rating;
+    long ratingNum;
     boolean isPrivate;
 
     public PlayerBean(String playerId, String shipName, String playerName,
                       String winRate, String battlePlayed, String avgDmg,
                       String avgXp, String avgFrags,  PlayerRating rating,
-                      boolean isPrivate) {
+                      long ratingNum, boolean isPrivate) {
         this.playerId = playerId;
         this.shipName = shipName;
         this.playerName = playerName;
@@ -30,10 +31,7 @@ public class PlayerBean {
         this.avgXp = avgXp;
         this.avgFrags = avgFrags;
         this.rating = rating;
+        this.ratingNum = ratingNum;
         this.isPrivate = isPrivate;
-    }
-
-    public String getPlayerName(){
-        return playerName;
     }
 }

@@ -285,7 +285,7 @@ public class ConnectDelegate extends BottomItemDelegate {
         sb.append(ip);
         sb.append(":");
         sb.append(port);
-        sb.append("/RestServer/api/");
+        sb.append("/");
 
         Log.i("yo", sb.toString());
 

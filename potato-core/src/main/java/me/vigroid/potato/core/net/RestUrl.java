@@ -7,5 +7,5 @@ package me.vigroid.potato.core.net;
 
 public class RestUrl {
 
-    public static final String REST_URL = "player_info.php";
+    public static final String REST_URL = "getInfo";
 }

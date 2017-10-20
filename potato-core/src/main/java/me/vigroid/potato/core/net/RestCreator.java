@@ -39,7 +39,7 @@ public class RestCreator {
 
     //Holder for okHttp, build from builder
     private static final class OKHttpHolder {
-        private static final int TIME_OUT = 60;
+        private static final int TIME_OUT = 20;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         private static final ArrayList<Interceptor> INTERCEPTORS = Potato.getConfiguration(ConfigKeys.INTERCEPTOR);
 
