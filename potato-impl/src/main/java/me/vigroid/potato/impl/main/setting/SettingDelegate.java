@@ -86,7 +86,9 @@ public class SettingDelegate extends BottomItemDelegate {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 PotatoPreference.addCustomInt(SavedStates.LANGUAGE.name(), (int)l);
-                Toast.makeText(_mActivity, "Sorry...Under development!", Toast.LENGTH_SHORT).show();
+                if (l>0) {
+                    Toast.makeText(_mActivity, "Sorry...Language switch under development!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

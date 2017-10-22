@@ -72,22 +72,32 @@ public class ConnectDelegate extends BottomItemDelegate {
         String ip = etIp.getText().toString();
         String port = etPort.getText().toString();
 
+        if (_mActivity.getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) _mActivity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(_mActivity.getCurrentFocus().getWindowToken(), 0);
+        }
+
         if (checkAndSetInput(ip, port)) {
 
             RestClient.builder()
-                    //TODO add not hard coded url
                     .url(RestUrl.REST_URL)
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
                             HashMap<String, ArrayList<PlayerBean>> resultMap = new PlayerDataConverter().setJsonData(response).convert();
-                            Configurator.getInstance().withTeamBeans(resultMap.get("team"))
-                                    .withEnemyBeans(resultMap.get("enemy"))
-                                    .withConnectionStatus(true)
-                                    .withBackGroundColor(Color.GREEN)
-                                    .withTeamUiUpdate(true)
-                                    .withEnemyUiUpdate(true);
+                            if (!resultMap.get("team").isEmpty() && !resultMap.get("enemy").isEmpty()) {
+                                Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
+                                Configurator.getInstance().withTeamBeans(resultMap.get("team"))
+                                        .withEnemyBeans(resultMap.get("enemy"))
+                                        .withConnectionStatus(true)
+                                        .withBackGroundColor(Color.GREEN)
+                                        .withTeamUiUpdate(true)
+                                        .withEnemyUiUpdate(true);
+                            }else {
+                                Toast.makeText(_mActivity, "Connected but no contents!", Toast.LENGTH_SHORT).show();
+                                Configurator.getInstance().withConnectionStatus(true)
+                                        .withBackGroundColor(Color.GREEN);
+                            }
                             setBackgroundColor();
                         }
                     })
@@ -122,7 +132,6 @@ public class ConnectDelegate extends BottomItemDelegate {
         Log.i("yo", apiHost);
         if (apiHost != null && !apiHost.isEmpty()) {
             RestClient.builder()
-                    //TODO add not hard coded url
                     .url(RestUrl.REST_URL)
                     .success(new ISuccess() {
                         @Override

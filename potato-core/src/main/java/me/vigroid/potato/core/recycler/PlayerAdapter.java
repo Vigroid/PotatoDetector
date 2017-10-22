@@ -34,10 +34,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         private TextView mTvShipName;
         private TextView mTvPlayerName;
         private TextView mTvWinRate;
-        private TextView mTvBattles;
+        private TextView mTvBattles;/*
         private TextView mTvAvgDmg;
         private TextView mTvAvgXp;
-        private TextView mTvAvgFrags;
+        private TextView mTvAvgFrags;*/
         private TextView mTvMore;
         private TextView mView;
 
@@ -46,10 +46,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
             mTvShipName = itemView.findViewById(R.id.text_ship_name);
             mTvPlayerName = itemView.findViewById(R.id.text_player_name);
             mTvWinRate = itemView.findViewById(R.id.text_win_rate_content);
-            mTvBattles = itemView.findViewById(R.id.text_battles_played_content);
+            mTvBattles = itemView.findViewById(R.id.text_battles_played_content);/*
             mTvAvgDmg = itemView.findViewById(R.id.text_avg_dmg_content);
             mTvAvgXp = itemView.findViewById(R.id.text_avg_xp_content);
-            mTvAvgFrags = itemView.findViewById(R.id.text_avg_frags_content);
+            mTvAvgFrags = itemView.findViewById(R.id.text_avg_frags_content);*/
             mTvMore = itemView.findViewById(R.id.text_more);
             mView = itemView.findViewById(R.id.player_rating_tag);
         }
@@ -78,10 +78,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerHold
         holder.mTvShipName.setText(bean.shipName);
         holder.mTvPlayerName.setText(bean.playerName);
         holder.mTvWinRate.setText(bean.winRate);
-        holder.mTvBattles.setText(bean.battlePlayed);
+        holder.mTvBattles.setText(bean.battlePlayed);/*
         holder.mTvAvgDmg.setText(bean.avgDmg);
         holder.mTvAvgXp.setText(bean.avgXp);
-        holder.mTvAvgFrags.setText(bean.avgFrags);
+        holder.mTvAvgFrags.setText(bean.avgFrags);*/
         holder.mTvMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

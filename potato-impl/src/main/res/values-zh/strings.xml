@@ -20,6 +20,8 @@
     <string name="setting_gitHub_page_link">https://github.com/Vigroid/PotatoDetector</string>
     <string name="setting_version">版本号</string>
     <string name="setting_version_num">1.0</string>
+    <string name="setting_about">关于评分</string>
+    <string name="setting_about_wows">玩家评分是通过WOWS-numbers的公式得出。</string>
 
     <string-array name="language_array">
         <item>系统自动</item>

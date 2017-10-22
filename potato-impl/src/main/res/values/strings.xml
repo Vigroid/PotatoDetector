@@ -20,6 +20,8 @@
     <string name="setting_gitHub_page_link">https://github.com/Vigroid/PotatoDetector</string>
     <string name="setting_version">Version</string>
     <string name="setting_version_num">1.0</string>
+    <string name="setting_about">About</string>
+    <string name="setting_about_wows">Player rating is calculated by WOWS-numbers\'s PR formula.</string>
 
     <string-array name="language_array">
         <item>Auto</item>
