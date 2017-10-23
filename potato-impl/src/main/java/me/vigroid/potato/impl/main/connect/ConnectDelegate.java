@@ -49,17 +49,11 @@ import me.vigroid.potato.impl.R2;
 
 public class ConnectDelegate extends BottomItemDelegate {
 
-    @BindView(R2.id.tv_icon_status)
-    IconTextView tvStatus = null;
-
     @BindView(R2.id.region_spinner)
     Spinner spinner = null;
 
     @BindView(R2.id.connect_upper_tag)
     TextView tvUpper = null;
-
-    @BindView(R2.id.connect_lower_tag)
-    TextView tvLower = null;
 
     @BindView(R2.id.edit_server_ip)
     TextInputEditText etIp = null;
@@ -126,46 +120,9 @@ public class ConnectDelegate extends BottomItemDelegate {
         }
     }
 
-    @OnClick(R2.id.button_test)
-    void onClickTestButton() {
-        String apiHost = Potato.getConfiguration(ConfigKeys.API_HOST);
-        Log.i("yo", apiHost);
-        if (apiHost != null && !apiHost.isEmpty()) {
-            RestClient.builder()
-                    .url(RestUrl.REST_URL)
-                    .success(new ISuccess() {
-                        @Override
-                        public void onSuccess(String response) {
-                            Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
-                            Configurator.getInstance().withConnectionStatus(true)
-                                    .withBackGroundColor(Color.GREEN);
-                            setBackgroundColor();
-                        }
-                    })
-                    .failure(new IFailure() {
-                        @Override
-                        public void onFailure() {
-                            Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
-                            Configurator.getInstance().withConnectionStatus(false)
-                                    .withBackGroundColor(Color.RED);
-                            setBackgroundColor();
-                        }
-                    })
-                    .error(new IError() {
-                        @Override
-                        public void onError(int code, String msg) {
-                            Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
-                            Configurator.getInstance().withConnectionStatus(false)
-                                    .withBackGroundColor(Color.YELLOW);
-                            setBackgroundColor();
-                        }
-                    })
-                    .build()
-                    .get();
-        } else {
-            Toast.makeText(_mActivity, "Please input valid IP and port first.", Toast.LENGTH_SHORT).show();
-        }
-    }
+    /*
+
+    }*/
 
     @OnClick(R2.id.button_QR_connect)
     void onClickScanQr() {
@@ -247,14 +204,6 @@ public class ConnectDelegate extends BottomItemDelegate {
 
     private void setBackgroundColor() {
         tvUpper.setBackgroundColor((int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
-        tvLower.setBackgroundColor((int) Potato.getConfiguration(ConfigKeys.BACKGND_COLOR));
-        if (Potato.getConfiguration(ConfigKeys.CONNECTED)) {
-            tvStatus.setText("{fa-check-circle}");
-            tvStatus.setTextColor(Color.GREEN);
-        } else {
-            tvStatus.setText("{fa-exclamation-triangle}");
-            tvStatus.setTextColor(Color.RED);
-        }
     }
 
     private boolean checkAndSetInput(String ip, String port) {
@@ -281,7 +230,7 @@ public class ConnectDelegate extends BottomItemDelegate {
         }
 
         //My rest server will allocate a random port number between 8000 and 10000 each time
-        if (portNum > 10000 || portNum < 8000) {
+        if (portNum > 65535 || portNum < 1) {
             etPort.setError("Illegal port number");
             return false;
         }
@@ -296,7 +245,7 @@ public class ConnectDelegate extends BottomItemDelegate {
         sb.append(port);
         sb.append("/");
 
-        Log.i("yo", sb.toString());
+       // Log.i("yo", sb.toString());
 
         Configurator.getInstance().withApiHost(sb.toString());
         Configurator.getInstance().withIP(ip);

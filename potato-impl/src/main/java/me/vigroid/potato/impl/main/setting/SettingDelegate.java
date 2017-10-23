@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,15 +20,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.joanzapata.iconify.widget.IconTextView;
+
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
+import me.vigroid.potato.core.app.ConfigKeys;
 import me.vigroid.potato.core.app.Configurator;
+import me.vigroid.potato.core.app.Potato;
 import me.vigroid.potato.core.app.SavedStates;
 import me.vigroid.potato.core.delegates.bottonTab.BottomItemDelegate;
+import me.vigroid.potato.core.net.RestClient;
+import me.vigroid.potato.core.net.RestUrl;
+import me.vigroid.potato.core.net.callback.IError;
+import me.vigroid.potato.core.net.callback.IFailure;
+import me.vigroid.potato.core.net.callback.ISuccess;
 import me.vigroid.potato.core.util.preference.PotatoPreference;
 import me.vigroid.potato.impl.R;
 import me.vigroid.potato.impl.R2;
@@ -41,6 +51,9 @@ public class SettingDelegate extends BottomItemDelegate {
 
     @BindView(R2.id.git_link)
     TextView mTvLink = null;
+
+    @BindView(R2.id.tv_icon_status)
+    IconTextView tvStatus = null;
 
     @OnClick(R2.id.git_link_view)
     void onClickGitLink(){
@@ -70,6 +83,46 @@ public class SettingDelegate extends BottomItemDelegate {
         Toast.makeText(_mActivity, "Poi~", Toast.LENGTH_SHORT).show();
 
     }
+    @OnClick(R2.id.button_test)
+    void onClickTestButton() {
+        String apiHost = Potato.getConfiguration(ConfigKeys.API_HOST);
+        Log.i("yo", apiHost);
+        if (apiHost != null && !apiHost.isEmpty()) {
+            RestClient.builder()
+                    .url(RestUrl.REST_URL)
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Toast.makeText(_mActivity, "Connected!", Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(true)
+                                    .withBackGroundColor(Color.GREEN);
+                            setBackgroundColor();
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(_mActivity, "Connection Failed! Please check your connection!", Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.RED);
+                            setBackgroundColor();
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            Toast.makeText(_mActivity, "Connection Error!\n" + code + msg, Toast.LENGTH_SHORT).show();
+                            Configurator.getInstance().withConnectionStatus(false)
+                                    .withBackGroundColor(Color.YELLOW);
+                            setBackgroundColor();
+                        }
+                    })
+                    .build()
+                    .get();
+        } else {
+            Toast.makeText(_mActivity, "Please input valid IP and port first.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public Object setLayout() {
@@ -98,5 +151,16 @@ public class SettingDelegate extends BottomItemDelegate {
         });
         langSpinner.setSelection( PotatoPreference.getCustomInt(SavedStates.LANGUAGE.name()));
         toggleBtn.setChecked(PotatoPreference.getAppFlagAnimation(SavedStates.ENABLE_ANIMATION.name()));
+    }
+
+    private void setBackgroundColor() {
+
+        if (Potato.getConfiguration(ConfigKeys.CONNECTED)) {
+            tvStatus.setText("{fa-check-circle}");
+            tvStatus.setTextColor(Color.GREEN);
+        } else {
+            tvStatus.setText("{fa-exclamation-triangle}");
+            tvStatus.setTextColor(Color.RED);
+        }
     }
 }

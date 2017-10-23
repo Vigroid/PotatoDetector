@@ -5,7 +5,7 @@
     <string name="connect_port">Port</string>
     <string name="connect_connect">Connect</string>
     <string name="connect_QR_connect">QR</string>
-    <string name="connect_status">Status</string>
+    <string name="connect_status">Connection Status</string>
     <string name="connect_test">Tap to test connection</string>
 
     <string name="team_title">Teammates</string>
