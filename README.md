@@ -30,7 +30,7 @@ Your_WOWS_Game_Folder\replays\potato_server
 Screenshot:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/server_unzip.jpg">
 
-### Execute the potato_server.bat and select a region.
+### Execute the potato_server.bat and select a region. (You can create a shortcut in desktop to execute it easier latter)
 Screenshot:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/region.jpg">
 
