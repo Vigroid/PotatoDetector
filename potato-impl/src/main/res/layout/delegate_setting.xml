@@ -186,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -216,6 +217,31 @@
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/setting_author_detail" />
 
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/setting_icon_author"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/icon_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/setting_icon_link" />
 
                 </LinearLayout>
 
@@ -293,6 +319,31 @@
                         android:layout_marginLeft="16dp"
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/setting_about_wows" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/setting_privacy"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/setting_privacy_link" />
 
                 </LinearLayout>
 

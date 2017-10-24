@@ -1,7 +1,9 @@
 package me.vigroid.potato.impl.main.connect;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -131,6 +133,13 @@ public class ConnectDelegate extends BottomItemDelegate {
             inputMethodManager.hideSoftInputFromWindow(_mActivity.getCurrentFocus().getWindowToken(), 0);
         }
         startScanWithCheck(this.getParentDelegate());
+    }
+
+    @OnClick(R2.id.instruction)
+    void onClickInstruction(){
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("https://github.com/Vigroid/PotatoDetector/blob/master/README.md"));
+        _mActivity.startActivity(i);
     }
 
     @Override

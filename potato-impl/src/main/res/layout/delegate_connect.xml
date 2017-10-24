@@ -150,6 +150,17 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:text="@string/connect_instruction"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="17sp"/>
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

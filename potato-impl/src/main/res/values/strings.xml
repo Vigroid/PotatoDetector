@@ -7,6 +7,7 @@
     <string name="connect_QR_connect">QR</string>
     <string name="connect_status">Connection Status</string>
     <string name="connect_test">Tap to test connection</string>
+    <string name="connect_instruction"><u>Click here to read the user guide for this App.(from GitHub.com)</u></string>
 
     <string name="team_title">Teammates</string>
     <string name="enemy_title">Enemies</string>
@@ -16,12 +17,16 @@
     <string name="setting_animation">Animation</string>
     <string name="setting_author">Author</string>
     <string name="setting_author_detail">I am Vigroid. Looking for job now!</string>
+    <string name="setting_icon_author">Icon Author</string>
+    <string name="setting_icon_link">Icon made by Freepik from www.flaticon.com</string>
     <string name="setting_gitHub_page">GitHub Repo</string>
     <string name="setting_gitHub_page_link">https://github.com/Vigroid/PotatoDetector</string>
     <string name="setting_version">Version</string>
     <string name="setting_version_num">1.0</string>
     <string name="setting_about">About</string>
     <string name="setting_about_wows">Player rating is calculated by WOWS-numbers\'s PR formula.</string>
+    <string name="setting_privacy">Privacy Policy</string>
+    <string name="setting_privacy_link">http://vigroid.me/privacy-policy-for-wows-match-monitor/</string>
 
     <string-array name="language_array">
         <item>Auto</item>

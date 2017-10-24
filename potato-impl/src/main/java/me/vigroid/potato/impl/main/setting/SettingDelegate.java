@@ -63,6 +63,20 @@ public class SettingDelegate extends BottomItemDelegate {
         _mActivity.startActivity(i);
     }
 
+    @OnClick(R2.id.privacy)
+    void onClickPrivacy(){
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("http://vigroid.me/privacy-policy-for-wows-match-monitor/"));
+        _mActivity.startActivity(i);
+    }
+
+    @OnClick(R2.id.icon_link)
+    void onClickIcon(){
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("https://www.flaticon.com/free-icon/potato_170332#term=potato&page=1&position=74"));
+        _mActivity.startActivity(i);
+    }
+
     @BindView(R2.id.spinner_lang)
     Spinner langSpinner = null;
 
