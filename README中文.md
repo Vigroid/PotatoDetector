@@ -1,4 +1,5 @@
 # PotatoDetector
+（懒得翻译这部分。。）
 
 This is an Android App for WOWS(World of Warships) players. Users simplily just need to run potato_server in PC side that fetches the real time match information. After connected with the server, users can find out teammates or enemies's performance level in the Android APP.
 
@@ -8,49 +9,48 @@ This app is greatly inspirded by <b>"Matchmaking Monitor Application" </b>
 The formula used to calculate the player's performance comes from <b>WOWS-number's PR formula</b>.
 * https://na.wows-numbers.com/personal/rating
 
-# User Guide
+# 使用方法
 
-## Step 1. Enable WOWS replays in PC side (can skip this step if replays is already enabled)
-To enable WOWS replays, there is offical guide from Wargaming.
+## 步骤一. 启用游戏自带的录像功能（已启用请忽略）
+官方的启用方法
 * https://na.wargaming.net/support/kb/articles/517
 
-## Step 2. Got Java Runtime Environment 1.7 or higher in PC side (can skip this if already installed)
-You can go ahead and download JRE from Oracle.
+## 步骤二. 安装java 1.7 或更高的运行环境（已安装请忽略）
+下载地址
 * http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
-## Step 3. Download and run the potato_server
-To receive information in Android App, you have to download and run the potato_server in your PC. 
+## 步骤三. 下载并运行电脑端potato服务器
+此app必须要与电脑端potato服务器连接，然后才可以获得数据后并显示结果。
 
-### First, download the potato_server.
-Dowload Link: * https://drive.google.com/file/d/0B_CDJZjuyTTqT19LNEFIVlRVR3M
-### Unzip the file and put in your WOWS replay folder. It should look like this:
+### 先下载potato服务器
+下载链接: * https://drive.google.com/file/d/0B_CDJZjuyTTqT19LNEFIVlRVR3M
+### 解压并把文件放在replays文件夹中，路径如下
 ```
-Your_WOWS_Game_Folder\replays\potato_server
+窝窝屎安装目录\replays\potato_server
 ```
-Screenshot:
+如图:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/server_unzip.jpg">
 
-### Execute the potato_server.bat and select a region. (You can create a shortcut in desktop to execute it easier latter)
-Screenshot:
+### 执行potato_server.bat文件并选择区域。（可以创建个桌面快捷方式方便使用）
+截图:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/region.jpg">
 
-### A window should pop up and show the IP, port and QRcode.
-Note: <b>Don't shutdown the window</b> or the server will also be stopped.
-Screenshot:
+### 运行完后会显示ip地址，端口和一个二维码。注意不要关闭，否则服务器就断开了
+截图:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/server_UI.jpg">
 
-## Step 4. Launch the WOWS Match Monitor Android App
+## 步骤四. 运行安卓app
 
-### Input or Scan the QRcode to connect with potato_server.
+### 输入服务器信息或者扫描二维码来与服务器连接
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/connect.png" width="300">
 
-### If connected, you can view teammates or enemy performance now. Default order is sorted descendingly by PR value.
+### 如果连接成功，你可以看队友个对手信息
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/team.png" width="300">
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/enemy.png", width="300">
 
-### If a new game started, you can refresh by swipe down.
+### 如果新游戏开始了，下滑刷新信息
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/refresh.png" width="300">
 
-# Special Thanks
+# 特别感谢
 
-My girlfriend who helped me improving the UI. <3
+多谢我妹子设计的app图标。
