@@ -16,11 +16,11 @@ The formula used to calculate the player's performance comes from <b>WOWS-number
 * https://na.wargaming.net/support/kb/articles/517
 
 ## 步骤二. 安装java 1.7 或更高的运行环境（已安装请忽略）
-You can go ahead and download JRE from Oracle.
+下载地址
 * http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 ## 步骤三. 下载并运行电脑端potato服务器
-本安卓app必须要从potato服务器中获得数据才能显示结果
+此app必须要与电脑端potato服务器连接，然后才可以获得数据后并显示结果。
 
 ### 先下载potato服务器
 下载链接: * https://drive.google.com/file/d/0B_CDJZjuyTTqT19LNEFIVlRVR3M
@@ -53,4 +53,4 @@ You can go ahead and download JRE from Oracle.
 
 # 特别感谢
 
-My girlfriend who designed the icon and improve the UI for me! <3
+多谢我妹子设计的app图标。
