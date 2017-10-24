@@ -53,4 +53,4 @@ Screenshot:
 
 # Special Thanks
 
-My girlfriend who designed the icon and improve the UI for me! <3
+My girlfriend who helped me improving the UI. <3
