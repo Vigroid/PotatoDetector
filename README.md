@@ -1,6 +1,6 @@
 # PotatoDetector
 
-This is an Android App for WOWS(World of Warships) players. Users simplily just need to run a server in PC side that fetches the real time match information. After connected with the server, users can view the player's performance level in the Android APP.
+This is an Android App for WOWS(World of Warships) players. Users simplily just need to run potato_server in PC side that fetches the real time match information. After connected with the server, users can find out teammates or enemies's performance level in the Android APP.
 
 This app is greatly inspirded by <b>"Matchmaking Monitor Application" </b>
 * https://github.com/jammin411/MatchmakingMonitor
