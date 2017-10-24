@@ -35,6 +35,7 @@ Screenshot:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/region.jpg">
 
 ### A window should pop up and show the IP, port and QRcode.
+Note: <b>Don't shutdown the window</b> or the server will also be stopped.
 Screenshot:
 <img src="https://raw.githubusercontent.com/Vigroid/PotatoDetector/master/screenshots/server_UI.jpg">
 
